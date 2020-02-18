@@ -1,0 +1,63 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body.login{
+    height: 100%;
+    background-size: 100% 100%;
+    background: url('../images/bg_login.png');
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.f-login{
+    width: 400px;
+    background: #fff;
+    margin: 5% auto;
+    padding: 25px 5px;
+    border-radius: 10px;
+}
+.f-login .f-head{
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.f-login .f-body{ padding: 15px;}
+.f-login .f-body input{
+    width: 100%;
+    padding: 10px 0px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    margin: 5px 0px;
+    font-size: 16px;
+    border-bottom: 2px solid green;
+}
+.f-login .f-footer{
+    padding: 15px;
+}
+.f-login .f-footer button{
+    width: 100%;
+    background: green;
+    outline: none;
+    border: none;
+    padding: 15px 0px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 20px;
+}
+.f-errors{
+    padding: 10px 15px;
+    text-align: center;
+}
+.f-errors p{
+    background: #FBE6E8;
+    font-size: 12px;
+    padding: 5px 0px;
+}

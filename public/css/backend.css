@@ -1,0 +1,131 @@
+@import url('style.css');
+
+.circle_div{
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px !important;
+    color: #fff;
+}
+.item-user-left{
+    background: white;
+}
+.item-user-left.active{
+    color: #fff;
+    background: green;
+}
+.item-user-left{clear: both;cursor: pointer;}
+.item-user-left:hover{
+    color: white;
+    background: green;
+}
+.item-user-left img{
+    width: 50px;
+}
+.item-user-left .name{
+    font-weight: bold;
+    font-size: 12px;
+    clear: both;
+    text-transform: uppercase;
+}
+.current-name{
+   position: relative;
+}
+.current-name b{
+    padding-left: 15px;
+}
+.current-name b::before{
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: green;
+    position: absolute;
+    top: 5px;
+    left: -5px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.cts-tab a:hover{
+    background: transparent !important;
+}
+.cts-tab a{
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000 !important;
+}
+.scroll-able{
+    max-height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scroll-able::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+}
+
+.scroll-able::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.scroll-able::-webkit-scrollbar-thumb
+{
+	background-color: #cccccc;
+}
+table.table_glass{
+    width: 100%;
+    border-radius: 4px !important;
+    border: 1px solid #ccc;
+    border-collapse: unset !important;
+    background: #eee;
+}
+table.table_glass td{
+    padding: 8px !important;
+}
+table.table_glass td p{width: 80px !important;font-weight: bold;}
+.table-donthuoc td,th{padding: 4px 10px;border: 1px solid #ccc;}
+.table-donthuoc {
+    width: 100%;
+    border-radius: 4px !important;
+    border-color: #ccc !important;
+    border-collapse: unset !important;
+    background: #eee;
+}
+.table-donthuoc .btn-add-th{
+    background: #ccc;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+.table-donthuoc .btn-add-th:hover{
+    background: green;
+    color: #fff;
+}
+.table-donthuoc .btn-del-thuoc{
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #C8302C;
+}
+.myckb{
+    width: 20px;
+    height: 20px;
+}
+p.p-horizon b:first-child{
+    margin-left: 0px;
+}
+p.p-horizon b{
+ margin-left: 25px;
+}
+tr.new_tr td{
+    padding: 4px 10px !important;
+}
+#page_for_print *{
+    font-family: 'Times New Roman', Times, serif !important;
+}

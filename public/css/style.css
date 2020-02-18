@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
+*{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.p0{
+    padding: 0px !important;
+}
+.m0{
+    margin: 0px !important;
+}
+.mb0{margin-bottom: 0px !important;}
+.pl0{padding-left: 0px !important;}
+.pr0{padding-right: 0px !important;}
+.mb15{margin-bottom: 15px;}
+.mb10{margin-bottom: 10px;}
+.p15{padding:15px}
+.p10{padding:10px}
+.p5{padding:5px}
+.row0{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+nav.nav{
+    width: 100%;
+    background: green;
+    padding: 4px;
+}
+.nav ul{margin-bottom: 0px;}
+.nav ul li{
+    list-style: none;
+    display: inline-flex;
+}
+.nav ul li a{
+    color: #fff;
+    padding: 8px 12px;
+}
+a.circle{
+    border-radius: 50% !important;
+    width: 42px !important;
+    height: 42px !important;
+    text-align: center !important;
+    transition: all 0.3s;
+}
+.bg-w{
+    background: white;
+}
+body{
+    background: #EBEBEB;
+}
+body{
+    background: #EEEEEE;
+    font-family: 'Roboto Condensed', sans-serif !important;
+}
+body::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #C1C1C1;
+}
+.bg-x{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 5px 5px;
+}
+
+.f-row{display: inline-flex;clear: both;width: 100%;}
+.f-row label{
+    min-width: 110px !important;
+    max-width: 110px !important;
+    font-size: 13px;
+    float: left;
+    margin-top: 5px;
+}
+.f-row .form-control{float: right;}
+.form-control{box-shadow: none !important;}
+
+tr.collapse.in {
+    display: table-row !important;
+}
+
+li.dropdown-cha{
+    position: relative;
+}
+ul.dropdown-con{
+    left: 0px;
+    top: 101%;
+    background: #1bb51b;
+    padding: 0px;
+    display: none;
+    position: absolute;
+    z-index: 9;
+}
+ul.dropdown-con li{
+    display: block;
+    min-width: auto;
+    min-width: 200px;
+    padding: 10px 12px;
+}
+li.dropdown-cha:hover ul.dropdown-con{
+    display: block;
+}
+
+
+/*	--------------------------------------------------
+	:: Table Filter
+	-------------------------------------------------- */
+.panel {
+	border: 1px solid #ddd;
+	background-color: #fcfcfc;
+}
+.panel .btn-group {
+	margin: 15px 0 30px;
+}
+.panel .btn-group .btn {
+	transition: background-color .3s ease;
+}
+.ckbox {
+	position: relative;
+}
+.ckbox input[type="checkbox"] {
+	opacity: 0;
+}
+.ckbox label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.ckbox label:before {
+	content: '';
+	top: 1px;
+	left: 0;
+	width: 18px;
+	height: 18px;
+	display: block;
+	position: absolute;
+	border-radius: 2px;
+	border: 1px solid #bbb;
+	background-color: #fff;
+}
+.ckbox input[type="checkbox"]:checked + label:before {
+	border-color: #2BBCDE;
+	background-color: #2BBCDE;
+}
+.ckbox input[type="checkbox"]:checked + label:after {
+	top: 3px;
+	left: 3.5px;
+	content: '\e013';
+	color: #fff;
+	font-size: 11px;
+	font-family: 'Glyphicons Halflings';
+	position: absolute;
+}
+
+
+.m-table{
+    border: 1px solid #f1ebeb;
+}
+.m-table thead{
+    border: 1px solid #c5e7f2;
+    background: #DBF3FB;
+}
+.m-table thead tr{padding: 5px 0px !important;}
+.m-table  tr td,th{
+    padding: 8px 10px !important;
+}
+.m-table tbody tr{
+    border-top: 1px solid #f1ebeb;
+}
+.m-table tbody tr:hover
+{   cursor: pointer;
+    background: #E6F5D6;
+}
+.w50{width: 50px !important;}
+.w80{width: 80px !important;}
+.w100{width: 100px !important;}
+
+.sibar{
+    padding:0px 10px;
+}
+.sibar .option{
+    background: #fff;
+    padding: 15px 10px;
+}
+.sibar .option .option-name{
+    background: #1e691e;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 0px;
+    position: relative;
+}
+.sibar .option .option-name::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -15px;
+    height: 100%;
+    width: 15px;
+    background: #1e691e;
+}
+.sibar .option input{
+    border-radius: 0px !important;
+    height: 35px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
