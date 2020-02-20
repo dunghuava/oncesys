@@ -14,11 +14,13 @@
         <link rel="stylesheet" href="public/css/backend.css">
         <link rel="stylesheet" href="public/select2/select2.css">
         <link rel="stylesheet" href="public/printjs/print.min.css">
+        <link rel="stylesheet" href="public/toastjs/toast.css">
         <link rel="stylesheet" href="public/font-awesome/css/font-awesome.css">
         <script src="public/bootstrap/js/bootstrap.js"></script>
         <script src="public/bootstrap/js/validator.js"></script>
         <script src="public/js/chart.min.js"></script>
         <script src="public/printjs/print.min.js"></script>
+        <script src="public/toastjs/toast.js"></script>
         
         <style>
             .f-row label{

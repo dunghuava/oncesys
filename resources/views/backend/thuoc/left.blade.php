@@ -12,7 +12,7 @@
             <div class="option form-inline">
                 <form action="{{asset('b/medicine/search')}}" method="get">
                     @csrf
-                    <p class="option-name">Loại thuốc</p>
+                    <p class="option-name">Đơn vị thuốc</p>
                     <select name="q" required style="width: 80%" id="" class="form-control">
                         <option value="0">--Lựa chọn--</option>
                         <option v-for="item in list_thuoc_cate" :value="item.id">@{{item.ten}}</option>
@@ -20,7 +20,7 @@
                     <button type="submit" class="btn btn-success"><span class="fa fa-search"></span></button>
                 </form>
             </div>
-            <div class="option form-inline">
+            <div class="option form-inline" style="display: none">
                 <form action="{{asset('b/medicine/search')}}" method="get">
                     @csrf
                     <p class="option-name">Giá vốn</p>
@@ -28,7 +28,7 @@
                     <button type="submit" class="btn btn-success"><span class="fa fa-search"></span></button>
                 </form>
             </div>
-            <div class="option form-inline">
+            <div class="option form-inline" style="display: none">
                 <form action="{{asset('b/medicine/search')}}" method="get">
                     @csrf
                     <p class="option-name">Giá bán</p>

@@ -8,10 +8,6 @@
             Thêm thuốc
         </button>
         <button class="btn btn-success">
-            <span class="fa fa-sign-in"></span>
-            Import Excel
-        </button>
-        <button class="btn btn-success">
             <span class="fa fa-arrow-down"></span>
             More
         </button>

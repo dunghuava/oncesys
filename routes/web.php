@@ -74,5 +74,6 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('save-kham-benh','backendController@saveKhamBenh');
 
         Route::get('get-thongke','backendController@getThongKe');
+        Route::post('calc-thongke','backendController@caclThongKe');
     });
 });

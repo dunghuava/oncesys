@@ -21,6 +21,7 @@
             </tr>
         </thead>
         <tbody>
+            @if(!$data->isEmpty())
             @foreach ($data as $i => $item)
             <tr data-toggle="{{$i!=0 ? 'collapse':''}}" data-target="#tr_{{$i}}">
                     <td class="w50">
@@ -57,6 +58,13 @@
                 </td>
             </tr>
             @endforeach
+            @else
+            <tr>
+                <td colspan="7" class="text-center">
+                    <img style="width: 150px" src="public/images/empty.png" alt="">
+                </td>
+            </tr>
+            @endif
         </tbody>
     </table>
 

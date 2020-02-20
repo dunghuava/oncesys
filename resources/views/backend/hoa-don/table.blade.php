@@ -57,9 +57,8 @@
                         <b>Chỉ định: </b>{{$khambenh['chi_dinh']}}
                         <b>Chi phí: </b>{{number_format($khambenh['chi_phi'])}} VNĐ
                     </p>
-                    <p> <br>
-                        
-                        <table border="1px" style="border-collapse: separate">
+                    <p>
+                        <table border="1px" style="border-collapse: separate;display: none">
                             <tr>
                                 <td rowspan="2">Không kính</td>
                                 <td>MP</td>
@@ -106,6 +105,7 @@
                                 <td>S.t</td>
                                 <td>Tên thuốc</td>
                                 <td>Số lượng</td>
+                                <td>Đơn giá</td>
                                 <td>Liều dùng</td>
                             </tr>
                             @if (!$bangthuoc->isEmpty()) 
@@ -114,6 +114,7 @@
                                     <td>{{$k+1}}.</td>
                                     <td>{{$thuoc['ten']}}</td>
                                     <td>{{$thuoc['so_luong']}}</td>
+                                    <td>{{number_format($thuoc['gia'])}} VNĐ</td>
                                     <td>{{$thuoc['lieu_dung']}}</td>
                                 </tr>
                                 @endforeach
@@ -135,6 +136,13 @@
                 </td>
             </tr>
             @endforeach
+            @if($data->isEmpty())
+            <tr>
+                <td colspan="7" class="text-center">
+                    <img style="width: 150px" src="public/images/empty.png" alt="">
+                </td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>

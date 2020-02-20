@@ -27,6 +27,10 @@ class BangKinh extends Migration
             $table->string('kinhcu_mt')->nullable();
             $table->string('kinhmoi_mp')->nullable();
             $table->string('kinhmoi_mt')->nullable();
+            $table->string('thiluc_cu_mp')->nullable();
+            $table->string('thiluc_cu_mt')->nullable();
+            $table->string('thiluc_moi_mp')->nullable();
+            $table->string('thiluc_moi_mt')->nullable();
             $table->string('nhanap_mp')->nullable();
             $table->string('nhanap_mt')->nullable();
             $table->string('chandoan_mp')->nullable();

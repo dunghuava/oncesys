@@ -20,7 +20,7 @@
                     <button type="submit" class="btn btn-success"><span class="fa fa-search"></span></button>
                 </form>
             </div>
-            <div class="option form-inline">
+            <div class="option form-inline" style="display: none">
                 <form action="{{asset('b/glass/search')}}" method="get">
                     @csrf
                     <p class="option-name">Giá vốn</p>
@@ -28,7 +28,7 @@
                     <button type="submit" class="btn btn-success"><span class="fa fa-search"></span></button>
                 </form>
             </div>
-            <div class="option form-inline">
+            <div class="option form-inline" style="display: none">
                 <form action="{{asset('b/glass/search')}}" method="get">
                     @csrf
                     <p class="option-name">Giá bán</p>

@@ -25,5 +25,14 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({ 
+                    autoclose: true, 
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd'
+            }).datepicker('update', new Date());
+        });
+    </script>
     <script src="public/js/chart_thongke.js"></script>
 @endsection

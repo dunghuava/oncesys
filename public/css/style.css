@@ -227,3 +227,24 @@ li.dropdown-cha:hover ul.dropdown-con{
   width: 100%;
   z-index: 99999;
 }
+.notify_me{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    padding: 5px 15px;
+    z-index: 999;
+    background: #C3E4AD;
+    border-top: 2px solid green;
+    animation: fade-top 0.4s;
+    min-width: 250px;
+    color: green;
+    cursor: pointer;
+}
+@keyframes fade-top{
+    from{
+        bottom: -200px;
+    }
+}
+.table_ajax {margin: auto !important;border: 1px solid #000000 !important;}
+.table_ajax td{padding: 3px 6px !important;}
+.table_ajax tr:first-child td{font-weight: bold !important;}

@@ -22,6 +22,7 @@
                 <div class="col-md-9 pl0">
                     <div class="boxs"><br>
                         @include('backend.kham.main')
+                        @include('components.notify')
                     </div>
                 </div>
             </div>

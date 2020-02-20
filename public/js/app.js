@@ -49338,7 +49338,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 function rInt() {
   var date = new Date();
-  return date.getDate() + '' + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '' + date.getFullYear().toString().substr(2, 2);
+  return date.getDate() + '' + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '' + date.getFullYear().toString().substr(2, 2) + date.getMilliseconds();
 }
 
 var vi_location = {
@@ -49408,7 +49408,7 @@ var thuoc_obj = {
   chi_tiet: ''
 };
 var kinh_obj = {
-  ma: 'K0' + rInt(),
+  ma: 'K' + rInt(),
   ten: '',
   id_loai: 0,
   gia_von: 1000,
@@ -49452,17 +49452,37 @@ var back_end = new Vue({
     },
     list_kinh_cate: [],
     cate_name: '',
-    khambenh: {},
+    khambenh: {
+      dan_do: '- Tái khám lại sau ... ngày / tuần'
+    },
     bangkinh: {},
     bangthuoc: [],
     id: 0,
-    tong_chiphi: 0
+    tong_chiphi: 0,
+    success: false,
+    header: '',
+    str: ''
   },
   created: function created() {
     this.getCateThuoc(), this.getCateKinh(), this.getAllThuoc();
   },
   methods: {
+    setSuccess: function setSuccess(header, str) {
+      var _this3 = this;
+
+      this.success = true;
+      this.str = str;
+      this.header = header;
+      setTimeout(function () {
+        _this3.success = false;
+      }, 4000);
+    },
+    sumTien: function sumTien(event) {
+      var val = event.target.value;
+    },
     saveKhambenh: function saveKhambenh() {
+      var _this4 = this;
+
       this.khambenh.id_benhnhan = this.id;
       this.khambenh.chi_phi = this.tong_chiphi;
 
@@ -49473,8 +49493,12 @@ var back_end = new Vue({
           'bangthuoc': this.bangthuoc
         }).then(function (res) {
           lazyload();
-          location.reload();
+          _this4.id = 0;
+
+          _this4.setSuccess('SUCCESS', 'Lưu dữ liệu thành công');
         });
+      } else {
+        this.setSuccess('THÔNG BÁO', 'Chưa chỉ định bệnh nhân được khám');
       }
     },
     getText: function getText(event) {
@@ -49483,6 +49507,7 @@ var back_end = new Vue({
       });
       this.itemThuoc.ten = item.ten;
       this.itemThuoc.gia = item.gia_ban;
+      this.itemThuoc.loai = item.loai;
     },
     addDSThuoc: function addDSThuoc() {
       var item = {
@@ -49490,15 +49515,19 @@ var back_end = new Vue({
         ten: this.itemThuoc.ten,
         so_luong: this.itemThuoc.so_luong,
         gia: this.itemThuoc.gia,
+        loai: this.itemThuoc.loai,
         lieu_dung: this.itemThuoc.lieu_dung
       };
-      this.bangthuoc.push(item);
-      var sum = 0;
-      this.bangthuoc.map(function (item) {
-        sum += item.gia * item.so_luong;
-      });
-      this.tong_chiphi = sum;
-      this.tong_chiphi = this.tong_chiphi.format(0, 3, '.');
+
+      if (parseInt(item.so_luong) > 0) {
+        this.bangthuoc.push(item);
+        var sum = 0;
+        this.bangthuoc.map(function (item) {
+          sum += item.gia * item.so_luong;
+        });
+        this.tong_chiphi = sum;
+        this.tong_chiphi = this.tong_chiphi.format(0, 3, '.');
+      }
     },
     removeT: function removeT(index) {
       this.bangthuoc.splice(index, 1);
@@ -49510,53 +49539,54 @@ var back_end = new Vue({
       this.tong_chiphi = this.tong_chiphi.format(0, 3, '.');
     },
     getAllThuoc: function getAllThuoc() {
-      var _this3 = this;
+      var _this5 = this;
 
       axios.get('api/b/get-all-thuoc').then(function (res) {
-        _this3.list_thuoc = res.data;
+        _this5.list_thuoc = res.data;
+        console.log(_this5.list_thuoc);
       });
     },
     getCateThuoc: function getCateThuoc() {
-      var _this4 = this;
+      var _this6 = this;
 
       axios.get('api/b/get-cate-thuoc').then(function (res) {
-        _this4.list_thuoc_cate = res.data;
+        _this6.list_thuoc_cate = res.data;
       });
     },
     getCateKinh: function getCateKinh() {
-      var _this5 = this;
+      var _this7 = this;
 
       axios.get('api/b/get-cate-kinh').then(function (res) {
-        _this5.list_kinh_cate = res.data;
+        _this7.list_kinh_cate = res.data;
       });
     },
     addCateThuoc: function addCateThuoc() {
-      var _this6 = this;
+      var _this8 = this;
 
       if (this.cate_name.trim() != '') {
         axios.post('api/b/add-cate-thuoc', {
           ten: this.cate_name
         }).then(function (res) {
-          _this6.list_thuoc_cate.push(res.data);
+          _this8.list_thuoc_cate.push(res.data);
 
-          _this6.isAddCate = false;
-          _this6.thuoc.id_loai = res.data.id;
-          _this6.cate_name = '';
+          _this8.isAddCate = false;
+          _this8.thuoc.id_loai = res.data.id;
+          _this8.cate_name = '';
         });
       }
     },
     addCateKinh: function addCateKinh() {
-      var _this7 = this;
+      var _this9 = this;
 
       if (this.cate_name.trim() != '') {
         axios.post('api/b/add-cate-kinh', {
           ten: this.cate_name
         }).then(function (res) {
-          _this7.list_kinh_cate.push(res.data);
+          _this9.list_kinh_cate.push(res.data);
 
-          _this7.isAddCate = false;
-          _this7.kinh.id_loai = res.data.id;
-          _this7.cate_name = '';
+          _this9.isAddCate = false;
+          _this9.kinh.id_loai = res.data.id;
+          _this9.cate_name = '';
         });
       }
     },
@@ -49585,17 +49615,17 @@ var back_end = new Vue({
       });
     },
     getUpdateThuoc: function getUpdateThuoc() {
-      var _this8 = this;
+      var _this10 = this;
 
       axios.get('api/b/get-thuoc/' + this.id).then(function (res) {
-        _this8.thuoc = res.data[0];
+        _this10.thuoc = res.data[0];
       });
     },
     getUpdateKinh: function getUpdateKinh() {
-      var _this9 = this;
+      var _this11 = this;
 
       axios.get('api/b/get-kinh/' + this.id).then(function (res) {
-        _this9.kinh = res.data[0];
+        _this11.kinh = res.data[0];
       });
     },
     updateThuoc: function updateThuoc() {
@@ -49613,10 +49643,10 @@ var back_end = new Vue({
       }
     },
     getBenhNhanID: function getBenhNhanID() {
-      var _this10 = this;
+      var _this12 = this;
 
       axios.get('api/b/get-benh-nhan-id/' + this.id).then(function (res) {
-        _this10.bn_obj = res.data[0];
+        _this12.bn_obj = res.data[0];
       });
     }
   }

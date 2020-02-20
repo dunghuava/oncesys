@@ -15,7 +15,7 @@
 <div class="row mb10">
     <div class="col-md-10">
         <div class="f-row">
-            <label for="">Loại</label>
+            <label for="">Đơn vị</label>
             <select v-model="thuoc.id_loai" class="form-control">
                 <option value="0">--Lựa chọn</option>
                 <option v-for="item in list_thuoc_cate" :value="item.id">@{{item.ten}}</option>

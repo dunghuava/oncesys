@@ -90,7 +90,9 @@ class backendController extends Controller
         return view ('backend.printer.index');
     }
     function getThuoc(){
-        $data = Thuoc::select(['id','ten','gia_ban'])->orderBy('ten','asc')->get();
+        $data = Thuoc::select(['db_thuoc.id','db_thuoc.ten','db_thuoc.gia_ban','db_loaithuoc.ten as loai'])
+        ->join('db_loaithuoc','id_loai','db_loaithuoc.id')
+        ->orderBy('ten','asc')->get();
         return response()->json($data, 200);
     }
     function thuocCategory (){
@@ -153,9 +155,117 @@ class backendController extends Controller
             ->join('province','province_id','province.id')
             ->join('district','district_id','district.id')
             ->join('ward','ward_id','ward.id')
-            ->orderBy('db_benhnhan.id','desc')
+            ->orderBy('db_benhnhan.updated_at','desc')
             ->paginate(10);
         return view ('backend.hoa-don.index',$data);
+    }
+    function caclThongKe(Request $request){
+        $data=null;
+        $begin_date = $request->data['begin_date'];
+        $end_date = $request->data['end_date'];
+        $type = $request->data['type'];
+
+        
+        if ($type=='DOANH_THU'){
+
+            $data=$begin_date.'/'.$end_date;
+
+            $res=KhamBenh::select([DB::raw('sum(chi_phi) as total')])
+                ->whereBetween('created_at',array($begin_date,$end_date))
+                ->get()->first();
+            $data='<h2>'.number_format($res['total']).'<sup>đ</sup></h2>';
+            
+        }
+        elseif ($type=='BENH_NHAN'){
+
+            $res=KhamBenh::select([
+                    DB::raw('sum(chi_phi) as money'),
+                    DB::raw('count(id_benhnhan) as people')
+                ])
+                ->whereBetween('created_at',array($begin_date,$end_date))
+                ->get()->first();
+                 $data='<h2>'.$res['people'].'ng /'.number_format($res['money']).'<sup>đ</sup> </h2>';
+            $res2=KhamBenh::select([
+                'db_benhnhan.ho_ten',
+                'db_benhnhan.ngay_sinh',
+                'db_benhnhan.tuoi',
+                'db_benhnhan.dien_thoai',
+                'db_khambenh.chi_phi',
+                'db_khambenh.created_at'
+            ])->join('db_benhnhan','id_benhnhan','db_benhnhan.id')
+              ->whereBetween('db_khambenh.created_at',array($begin_date,$end_date))
+              ->get();
+              $data.=   '<table border="1px" class="table_ajax" style="margin:auto">
+                         <tr>
+                            <td>S.t</td>
+                            <td>Họ tên</td>
+                            <td>Tuổi</td>
+                            <td>Ngày sinh</td>
+                            <td>Điện thoại</td>
+                            <td>Chi phí</td>
+                            <td>Ngày / Giờ</td>
+                         </tr>';
+                foreach ($res2 as $k => $item){
+                  $k+=1;
+                  $data.='<tr>
+                            <td>'.$k.'</td> 
+                            <td class="text-left"> '.$item['ho_ten'].'</td>
+                            <td>&nbsp;&nbsp;'.$item['tuoi'].'</td>
+                            <td>&nbsp;&nbsp;'.$item['ngay_sinh'].'</td>
+                            <td>&nbsp;&nbsp;'.$item['dien_thoai'].'</td>
+                            <td>&nbsp;&nbsp;'.number_format($item['chi_phi']).'<sup>đ</sup></td>
+                            <td>&nbsp;&nbsp;'.$item['created_at'].'</td>
+                        </tr>';
+                }
+                $data.'</table>';
+        }
+        elseif ($type=='KINH'){
+            $data='kinh';
+        }
+        elseif ($type=='THUOC'){
+            $data='';
+            $res = BangThuoc::select([
+                'db_bangthuoc.ten',
+                'db_bangthuoc.loai',
+                DB::raw('sum(db_bangthuoc.so_luong) as so_luong'),
+                DB::raw('sum(db_bangthuoc.gia) as gia_ban'),
+                DB::raw('sum(db_bangthuoc.gia_von) as gia_von'),
+            ])
+            ->whereBetween('db_bangthuoc.created_at',array($begin_date,$end_date))
+            ->groupby(['ten','loai','so_luong','gia','gia_von'])->get();
+
+            $tonglai=0;
+            $tongvon=0;
+            $data.=   '<table border="1px" class="table_ajax" style="margin:auto">
+                        <tr>
+                            <td>S.t</td>
+                            <td>Tên thuốc</td>
+                            <td>Số lượng</td>
+                            <td>Loại</td>
+                            <td>Giá bán</td>
+                            <td>Giá vốn</td>
+                            <td>Lãi</td>
+                        </tr>';
+            foreach ($res as $k => $item){
+                $k+=1;
+                $tongvon+=$item['gia_von']*$item['so_luong'];
+                $lai = ($item['gia_ban']*$item['so_luong'])-($item['gia_von']*$item['so_luong']);
+                $tonglai+=$lai;
+                $data.='<tr>
+                            <td>'.$k.'</td> 
+                            <td class="text-left"> '.$item['ten'].'</td>
+                            <td>&nbsp;&nbsp;'.$item['so_luong'].'</td>
+                            <td>&nbsp;&nbsp;'.$item['loai'].'</td>
+                            <td>&nbsp;&nbsp;'.number_format($item['gia_ban']*$item['so_luong']).'<sup>đ</sup></td>
+                            <td>&nbsp;&nbsp;'.number_format($item['gia_von']*$item['so_luong']).'<sup>đ</sup></td>
+                            <td>&nbsp;&nbsp;'.number_format($lai).'<sup>đ</sup></td>
+                        </tr>';
+            }
+            $data.'     </table>';
+            $data.='<h3>Tổng vốn: '.number_format($tongvon).'<sup>đ</sup> --o-- Tổng lãi: '.number_format($tonglai).'<sup>đ</sup></h3><br>';
+
+        }
+        return response()->json($data, 200);
     }
     function searchHoaDon(){
        $q = $_GET['q'];

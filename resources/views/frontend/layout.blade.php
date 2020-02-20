@@ -22,7 +22,7 @@
             @media (min-width: 1200px){
                 .container {
                     margin-top: 2px;
-                    width: 90%;
+                    width: 100%;
                     margin: auto
                 }
             }

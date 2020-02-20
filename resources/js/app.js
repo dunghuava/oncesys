@@ -30,7 +30,7 @@ window.Vue = require('vue');
 
 function rInt() {
     var date = new Date();
-    return date.getDate() + '' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '' + date.getFullYear().toString().substr(2, 2);
+    return date.getDate() + '' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '' + date.getFullYear().toString().substr(2, 2) + date.getMilliseconds();
 }
 
 
@@ -98,7 +98,7 @@ var thuoc_obj = {
     chi_tiet: ''
 };
 var kinh_obj = {
-    ma: 'K0' + rInt(),
+    ma: 'K' + rInt(),
     ten: '',
     id_loai: 0,
     gia_von: 1000,
@@ -139,11 +139,14 @@ const back_end = new Vue({
         itemThuoc: { id: 0 },
         list_kinh_cate: [],
         cate_name: '',
-        khambenh: {},
+        khambenh: { dan_do: '- Tái khám lại sau ... ngày / tuần' },
         bangkinh: {},
         bangthuoc: [],
         id: 0,
-        tong_chiphi: 0
+        tong_chiphi: 0,
+        success: false,
+        header: '',
+        str: ''
     },
     created() {
         this.getCateThuoc(),
@@ -151,20 +154,37 @@ const back_end = new Vue({
             this.getAllThuoc()
     },
     methods: {
+        setSuccess: function (header, str) {
+            this.success = true;
+            this.str = str;
+            this.header = header;
+            setTimeout(() => {
+                this.success = false;
+            }, 4000);
+        },
+        sumTien: function (event) {
+            var val = event.target.value;
+        },
         saveKhambenh: function () {
+
             this.khambenh.id_benhnhan = this.id;
             this.khambenh.chi_phi = this.tong_chiphi;
+
             if (this.id != 0) {
                 axios.post('api/b/save-kham-benh', { 'khambenh': this.khambenh, 'bangkinh': this.bangkinh, 'bangthuoc': this.bangthuoc }).then(res => {
                     lazyload();
-                    location.reload();
+                    this.id = 0;
+                    this.setSuccess('SUCCESS', 'Lưu dữ liệu thành công');
                 });
+            } else {
+                this.setSuccess('THÔNG BÁO', 'Chưa chỉ định bệnh nhân được khám');
             }
         },
         getText: function (event) {
             var item = this.list_thuoc.find(item => item.id == event.target.value);
             this.itemThuoc.ten = item.ten;
             this.itemThuoc.gia = item.gia_ban;
+            this.itemThuoc.loai = item.loai;
         },
         addDSThuoc: function () {
             var item = {
@@ -172,15 +192,18 @@ const back_end = new Vue({
                 ten: this.itemThuoc.ten,
                 so_luong: this.itemThuoc.so_luong,
                 gia: this.itemThuoc.gia,
+                loai: this.itemThuoc.loai,
                 lieu_dung: this.itemThuoc.lieu_dung
             }
-            this.bangthuoc.push(item);
-            var sum = 0;
-            this.bangthuoc.map(function (item) {
-                sum += (item.gia * item.so_luong);
-            });
-            this.tong_chiphi = sum;
-            this.tong_chiphi = this.tong_chiphi.format(0, 3, '.');
+            if (parseInt(item.so_luong) > 0) {
+                this.bangthuoc.push(item);
+                var sum = 0;
+                this.bangthuoc.map(function (item) {
+                    sum += (item.gia * item.so_luong);
+                });
+                this.tong_chiphi = sum;
+                this.tong_chiphi = this.tong_chiphi.format(0, 3, '.');
+            }
         },
         removeT: function (index) {
             this.bangthuoc.splice(index, 1);
@@ -194,6 +217,8 @@ const back_end = new Vue({
         getAllThuoc: function () {
             axios.get('api/b/get-all-thuoc').then(res => {
                 this.list_thuoc = res.data;
+                console.log(this.list_thuoc);
+
             });
         },
         getCateThuoc: function () {

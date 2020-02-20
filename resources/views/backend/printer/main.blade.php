@@ -27,7 +27,6 @@
         height: 21cm;
         margin: auto;
         background: white;
-        box-shadow: 0 0 0.5cm rgba(0,0,0,0.2);
     }
 </style>
 <style>
@@ -48,9 +47,9 @@
     <table id="print_table" style="width: 100%">
         <tr>
             <td colspan="10">
-                <img id="logo" src="public/images/logo.png" alt="">
-                <h5>PHÒNG KHÁM MẮT BẢO AN</h5>
-                <p>Địa chỉ: 123 Đống Đa , Hà Nội</p>
+                <img id="logo" src="public/images/logo_print.png" alt="">
+                <p>Điện thoại: 0383868205</p>
+                <p>Địa chỉ: F22, Bình Thạnh , HCM</p>
             </td>
         </tr>
         <tr>
@@ -70,9 +69,6 @@
             <td colspan="9"><p>Thôn 10, Xã Đak N'Drot , Huyện Đăk Mill, Tỉnh Đăk Nông</p></td>
         </tr>
         <tr>
-            <td colspan="10"><p>Thị lực.</p></td>
-        </tr>
-        <tr>
             <td colspan="10">
                 <table border="1" style="width:100%" class="table-kq">
                     <tr>
@@ -88,9 +84,6 @@
                         <td rowspan="2"><p>Kính mới</p></td>
                         <td><p>MP</p></td>
                         <td>1.4</td>
-                        <td rowspan="2"><p>Nhãn áp</p></td>
-                        <td><p>MP</p></td>
-                        <td>1.5</td>
                     </tr>
                     <tr>
                         <td><p>MT</p></td>
@@ -101,14 +94,9 @@
                         <td><p>1.3</p></td>
                         <td><p>MT</p></td>
                         <td><p>1.4</p></td>
-                        <td><p>MT</p></td>
-                        <td><p>1.5</p></td>
                     </tr>
                 </table><br>
             </td>
-        </tr>
-        <tr>
-            <td colspan="10"><p>Đơn thuốc</p></td>
         </tr>
         <tr>
             <td colspan="10">
@@ -119,6 +107,7 @@
                         <td>Số lượng</td>
                         <td>Loại</td>
                         <td>Liều dùng</td>
+                        <td>Liều dùng</td>
                     </tr>
                     @for ($i = 0; $i < 6; $i++)                        
                     <tr>
@@ -127,6 +116,7 @@
                         <td>2</td>
                         <td>Viên</td>
                         <td>Uống 2 lần 1 ngày</td>
+                        <td>Liều dùng</td>
                     </tr>
                     @endfor
 

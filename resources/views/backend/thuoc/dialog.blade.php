@@ -23,13 +23,13 @@
     <div class="dialog-k fade-scale">
         <span v-on:click="isAddCate=false" class="fa fa-close"></span>
         <div class="dialog-h">
-            <h4><b>Thêm danh mục</b></h4>
+            <h4><b>Thêm đơn vị thuốc</b></h4>
         </div>
         <div class="dialog-b">
             <div class="row mb10">
                 <div class="col-md-12">
                     <div class="f-row">
-                        <label for="">Tên</label>
+                        <label for="">Tên đơn vị</label>
                         <input v-model="cate_name" required  type="text" class="form-control">
                     </div>
                 </div>
