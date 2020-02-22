@@ -48,3 +48,14 @@
         }
     }
 </style>
+
+<script>
+    function setMessage(header, mess) {
+        $('#notify').show();
+        $('#header').html(header);
+        $('#mess').html(mess);
+        setTimeout(() => {
+            $('#notify').hide();
+        }, 4000);
+    }
+</script>

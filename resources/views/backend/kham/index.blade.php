@@ -36,5 +36,5 @@
             });
         });
     </script>
-    <script src="public/js/app.js"></script>
+    <script src="public/js/kham_benh.js"></script>
 @endsection

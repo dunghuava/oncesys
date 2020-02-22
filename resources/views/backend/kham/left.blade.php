@@ -3,7 +3,7 @@
     <div class="col-md-12 p0"><br>
         <div class="bg-wx scroll-able">
             @foreach ($BenhNhan as $item)
-                <div v-on:click="id={{$item->id}};getBenhNhanID()" class="item-user-left bg-x mb10">
+                <div onclick="getBenhNhanID({{$item['id']}})" class="item-user-left bg-x mb10">
                     <div class="row">
                         <div class="col-md-3">
                             <img src="public/images/user.png" alt="">

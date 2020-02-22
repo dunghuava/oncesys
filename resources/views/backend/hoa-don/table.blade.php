@@ -53,7 +53,7 @@
                     ?>
                     <p class="p-horizon">
                         <b>Địa chỉ: </b> {{$item->ward.', '.$item->district.', '.$item->province}}
-                        <b>Lý do khám: </b>{{$khambenh['lydo_kham']}}
+                        <b>Lý do khám: </b>{{$khambenh['ly_do']}}
                         <b>Chỉ định: </b>{{$khambenh['chi_dinh']}}
                         <b>Chi phí: </b>{{number_format($khambenh['chi_phi'])}} VNĐ
                     </p>
@@ -102,7 +102,7 @@
                         <br>
                         <table border="1px" style="border-collapse: separate">
                             <tr>
-                                <td>S.t</td>
+                                <td>STT</td>
                                 <td>Tên thuốc</td>
                                 <td>Số lượng</td>
                                 <td>Đơn giá</td>

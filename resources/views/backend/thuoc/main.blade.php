@@ -3,7 +3,7 @@
         <h3 class="m0"><b>Quản lý thuốc <span style="opacity: 0.2">|</span> thủ thuật</b></h3><br>
     </div>
     <div class="col-md-8 text-right">
-        <button v-on:click="isAdd=true;isUpdate=false" class="btn btn-success">
+        <button v-on:click="isAdd=true;isUpdate=false;" class="btn btn-success">
             <span class="fa fa-plus"></span>
             Thêm thuốc
         </button>

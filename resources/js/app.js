@@ -31,7 +31,7 @@ window.Vue = require('vue');
 
 function rInt() {
     var date = new Date();
-    return date.getDate() + '' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '' + date.getFullYear().toString().substr(2, 2) + date.getMilliseconds();
+    return date.getDate() + '' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '' + date.getFullYear().toString().substr(2, 2) + '_' + date.getMilliseconds();
 }
 
 
@@ -91,9 +91,9 @@ var thuoc_obj = {
     ma: 'T' + rInt(),
     ten: '',
     id_loai: 0,
-    gia_von: 1000,
-    gia_ban: 1000,
-    so_luong: 10,
+    gia_von: 0,
+    gia_ban: 0,
+    so_luong: 0,
     ngay_sx: '',
     han_sd: '',
     chi_tiet: ''
@@ -102,9 +102,9 @@ var kinh_obj = {
     ma: 'K' + rInt(),
     ten: '',
     id_loai: 0,
-    gia_von: 1000,
-    gia_ban: 1000,
-    so_luong: 10,
+    gia_von: 0,
+    gia_ban: 0,
+    so_luong: 0,
     ngay_sx: '',
     han_sd: '',
     chi_tiet: ''
@@ -247,6 +247,8 @@ const back_end = new Vue({
                     this.isAddCate = false;
                     this.thuoc.id_loai = res.data.id;
                     this.cate_name = '';
+                }).catch(function (e) {
+                    setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
                 });
             }
         },
@@ -257,21 +259,27 @@ const back_end = new Vue({
                     this.isAddCate = false;
                     this.kinh.id_loai = res.data.id;
                     this.cate_name = '';
-                });
+                }).catch(function (e) {
+                    setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
+                });;
             }
         },
         addThuoc: function () {
             if (this.thuoc.ten.trim() != '') {
                 axios.post('api/b/add-thuoc', this.thuoc).then(res => {
                     location.reload();
-                });
+                }).catch(function (e) {
+                    setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
+                });;
             }
         },
         addKinh: function () {
             if (this.kinh.ten.trim() != '') {
                 axios.post('api/b/add-kinh', this.kinh).then(res => {
                     location.reload();
-                });
+                }).catch(function (e) {
+                    setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
+                });;
             }
         },
         deleteIdThuoc: function () {
@@ -298,14 +306,19 @@ const back_end = new Vue({
             if (this.thuoc.ten.trim() != '') {
                 axios.post('api/b/update-thuoc', this.thuoc).then(res => {
                     location.reload();
-                });
+                }).catch(function (error) {
+                    console.log(error);
+                    setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
+                });;
             }
         },
         updateKinh: function () {
             if (this.kinh.ten.trim() != '') {
                 axios.post('api/b/update-kinh', this.kinh).then(res => {
                     location.reload();
-                });
+                }).catch(function (e) {
+                    setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
+                });;
             }
         },
         getBenhNhanID: function () {

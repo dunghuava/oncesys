@@ -76,7 +76,7 @@ class backendController extends Controller
     }
     function thuoc (){
         $select=['db_thuoc.id','db_thuoc.ma','db_thuoc.ten','db_loaithuoc.ten AS ten_loai','gia_von','gia_ban','so_luong','ngay_sx','han_sd','chi_tiet'];
-        $data['data']=Thuoc::select($select)->join('db_loaithuoc','id_loai','=','db_loaithuoc.id')->orderBy('db_thuoc.id','desc')->paginate(10);
+        $data['data']=Thuoc::select($select)->leftjoin('db_loaithuoc','id_loai','=','db_loaithuoc.id')->orderBy('db_thuoc.id','desc')->paginate(10);
         return view ('backend.thuoc.index',$data);
     }
     function printer (){
@@ -94,7 +94,7 @@ class backendController extends Controller
     }
     function kinh (){
         $select=['db_kinh.id','db_kinh.ma','db_kinh.ten','db_loaikinh.ten AS ten_loai','gia_von','gia_ban','so_luong','ngay_sx','han_sd','chi_tiet'];
-        $data['data']=Kinh::select($select)->join('db_loaikinh','id_loai','=','db_loaikinh.id')->orderBy('db_kinh.id','desc')->paginate(10);
+        $data['data']=Kinh::select($select)->leftjoin('db_loaikinh','id_loai','=','db_loaikinh.id')->orderBy('db_kinh.id','desc')->paginate(10);
         return view ('backend.kinh.index',$data);
     }
     function searchKinh(){
@@ -158,7 +158,10 @@ class backendController extends Controller
         $begin_date = $request->data['begin_date'];
         $end_date = $request->data['end_date'];
         $type = $request->data['type'];
-
+        $date='abc_xyz';
+        if (trim($begin_date)==trim($end_date)){
+            $date=$begin_date;
+        }
         
         if ($type=='DOANH_THU'){
 
@@ -219,14 +222,15 @@ class backendController extends Controller
         elseif ($type=='THUOC'){
             $data='';
             $res = BangThuoc::select([
+                'db_bangthuoc.id_thuoc',
                 'db_bangthuoc.ten',
                 'db_bangthuoc.loai',
                 DB::raw('sum(db_bangthuoc.so_luong) as so_luong'),
-                DB::raw('sum(db_bangthuoc.gia) as gia_ban'),
-                DB::raw('sum(db_bangthuoc.gia_von) as gia_von'),
+                DB::raw('(db_bangthuoc.gia) as gia_ban'),
+                DB::raw('(db_bangthuoc.gia_von) as gia_von'),
             ])
             ->whereBetween('db_bangthuoc.created_at',array($begin_date,$end_date))
-            ->groupby(['ten','loai','so_luong','gia','gia_von'])->get();
+            ->groupby(['id_thuoc','ten','loai','so_luong','gia','gia_von'])->get();
 
             $tonglai=0;
             $tongvon=0;

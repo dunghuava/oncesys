@@ -103,7 +103,7 @@
                 <p>Thủ thuật:</p>
             </td>
             <td colspan="8">
-                <p>Đánh bờ mi, Đánh bờ mi, Đánh bờ mi, Đánh bờ mi, Đánh bờ mi, Đánh bờ mi, Đánh bờ mi,</p>
+                <p>{{$khambenh['thu_thuat']}}</p>
             </td>
         </tr>
         <tr>
@@ -131,14 +131,15 @@
         <tr>
             <td><p>Dặn dò: </p></td>
             <td colspan="9">
-                <p>{{$khambenh['dan_do']}}</p>
+                <p>(*) {{$khambenh['dan_do']}}</p>
                 <p>(*) Khi khám lại nhớ mang theo phiếu này</p>
             </td>
         </tr>
         <tr>
             <td colspan="8"></td>
             <td colspan="4" class="center">
-                <p>.....Ngày ....Tháng .....Năm ....</p>
+                <p>Ngày khám</p>
+                <p>Ngày {{date('d')}} Tháng {{date('m')}} Năm {{date('Y')}}</p>
                 <br><br>
                 <h4 align="center">BS. LÊ PHI HOÀNG</h4>
             </td>

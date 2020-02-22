@@ -235,16 +235,26 @@ li.dropdown-cha:hover ul.dropdown-con{
     z-index: 999;
     background: #C3E4AD;
     border-top: 2px solid green;
-    animation: fade-top 0.4s;
+    animation: fade-top 4s;
     min-width: 250px;
     color: green;
     cursor: pointer;
 }
 @keyframes fade-top{
-    from{
-        bottom: -200px;
-    }
+    0%{bottom: -200px;}
+    10%{bottom: 5%;}
+    90%{bottom: 5%;}
+    100%{bottom: -200px;}
 }
 .table_ajax {margin: auto !important;border: 1px solid #000000 !important;}
 .table_ajax td{padding: 3px 6px !important;}
 .table_ajax tr:first-child td{font-weight: bold !important;}
+.select2-selection{
+    height: 35px !important;
+    border-radius: 4px !important;
+    background: #C1C1C1;
+}
+.select2-container--default .select2-selection--single{
+    background-color: #e1e1e1 !important;
+    border: 1px solid #ccc !important;
+}

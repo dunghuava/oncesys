@@ -16,6 +16,7 @@
                 <div class="col-md-9 pl0">
                     <div class="boxs">
                         @include('backend.kinh.main')
+                        @include('components.notify')
                     </div>
                 </div>
             </div>
