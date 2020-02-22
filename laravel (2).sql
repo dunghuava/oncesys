@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2020 at 03:51 PM
+-- Generation Time: Feb 22, 2020 at 05:05 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -41,6 +41,10 @@ CREATE TABLE `db_bangkinh` (
   `kinhcu_mt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kinhmoi_mp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kinhmoi_mt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thiluc_cu_mp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thiluc_cu_mt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thiluc_moi_mp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thiluc_moi_mt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nhanap_mp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nhanap_mt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `chandoan_mp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -53,15 +57,9 @@ CREATE TABLE `db_bangkinh` (
 -- Dumping data for table `db_bangkinh`
 --
 
-INSERT INTO `db_bangkinh` (`id`, `id_khambenh`, `id_kinh`, `ten`, `khongkinh_mp`, `khongkinh_mt`, `kinhlo_mp`, `kinhlo_mt`, `kinhcu_mp`, `kinhcu_mt`, `kinhmoi_mp`, `kinhmoi_mt`, `nhanap_mp`, `nhanap_mt`, `chandoan_mp`, `chandoan_mt`, `created_at`, `updated_at`) VALUES
-(16, 9, NULL, NULL, '1', '1', '2', '2', '1', '1', '2', '2', '3', '3', '4', '4', '2020-02-15 21:41:45', '2020-02-15 21:41:45'),
-(17, 10, NULL, NULL, '1', '1', '2', '2', '1', '1', '2', '2', '1', '1', '2', '2', '2020-02-15 21:50:03', '2020-02-15 21:50:03'),
-(18, 11, NULL, NULL, '1', '1', '2', '2', '1', '1', '2', '2', '2', '2', '2', '2', '2020-02-15 23:17:52', '2020-02-15 23:17:52'),
-(19, 12, NULL, NULL, '1', '1', '2', '2', '1', '1', '2', '2', '3', '3', '4', '4', '2020-02-15 23:19:51', '2020-02-15 23:19:51'),
-(20, 13, NULL, NULL, '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '2020-02-16 07:26:08', '2020-02-16 07:26:08'),
-(21, 14, NULL, NULL, '1', '2', '1', '2', '3', '4', '3', '4', '5', '6', '5', '6', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(22, 15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-02-16 09:22:26', '2020-02-16 09:22:26'),
-(23, 16, NULL, NULL, '1', '1', '2', '2', '1', '1', '2', '2', '1', '1', '2', '2', '2020-02-18 02:14:07', '2020-02-18 02:14:07');
+INSERT INTO `db_bangkinh` (`id`, `id_khambenh`, `id_kinh`, `ten`, `khongkinh_mp`, `khongkinh_mt`, `kinhlo_mp`, `kinhlo_mt`, `kinhcu_mp`, `kinhcu_mt`, `kinhmoi_mp`, `kinhmoi_mt`, `thiluc_cu_mp`, `thiluc_cu_mt`, `thiluc_moi_mp`, `thiluc_moi_mt`, `nhanap_mp`, `nhanap_mt`, `chandoan_mp`, `chandoan_mt`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, NULL, '1', '1', '2', '2', '3', '3', '4', '4', '3.3', '3.3', '5', '5', '6', '6', 'Viêm kết mạc', 'Khô tuyến mắt', '2020-02-22 04:42:53', '2020-02-22 04:42:53'),
+(2, 2, NULL, NULL, '1', '1', '2', '2', '3', '3', '5', '5', '4', '4', '6', '6', '7', '7', 'Viêm kết mạc', 'Khô mắt', '2020-02-22 09:00:52', '2020-02-22 09:00:52');
 
 -- --------------------------------------------------------
 
@@ -75,7 +73,9 @@ CREATE TABLE `db_bangthuoc` (
   `id_thuoc` int(11) DEFAULT NULL,
   `ten` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `so_luong` int(11) DEFAULT NULL,
+  `loai` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gia` int(11) DEFAULT NULL,
+  `gia_von` int(11) NOT NULL DEFAULT 0,
   `lieu_dung` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -85,31 +85,13 @@ CREATE TABLE `db_bangthuoc` (
 -- Dumping data for table `db_bangthuoc`
 --
 
-INSERT INTO `db_bangthuoc` (`id`, `id_khambenh`, `id_thuoc`, `ten`, `so_luong`, `gia`, `lieu_dung`, `created_at`, `updated_at`) VALUES
-(94, 14, 1, 'Vinatmin C2', 10, 20000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(95, 14, 1, 'Vinatmin C2', 10, 20000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(96, 14, 1, 'Vinatmin C2', 10, 20000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(97, 14, 1, 'Vinatmin C2', 10, 20000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(98, 14, 3, 'Khau trang', 10, 6000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(99, 14, 3, 'Khau trang', 10, 6000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(100, 14, 2, 'Vitamin C2', 10, 20000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(101, 14, 2, 'Vitamin C2', 10, 20000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(102, 14, 4, '9292929', 10, 1000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(103, 14, 4, '9292929', 10, 1000, 'Uống 2 lần 1 ngày', '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(104, 15, 3, 'Khau trang', 120, 6000, NULL, '2020-02-16 09:22:26', '2020-02-16 09:22:26'),
-(105, 15, 3, 'Khau trang', 120, 6000, NULL, '2020-02-16 09:22:26', '2020-02-16 09:22:26'),
-(106, 15, 3, 'Khau trang', 120, 6000, NULL, '2020-02-16 09:22:26', '2020-02-16 09:22:26'),
-(107, 15, 3, 'Khau trang', 120, 6000, NULL, '2020-02-16 09:22:26', '2020-02-16 09:22:26'),
-(108, 15, 2, 'Vitamin C2', 18, 20000, NULL, '2020-02-16 09:22:26', '2020-02-16 09:22:26'),
-(109, 15, 2, 'Vitamin C2', 18, 20000, NULL, '2020-02-16 09:22:27', '2020-02-16 09:22:27'),
-(110, 15, 2, 'Vitamin C2', 18, 20000, NULL, '2020-02-16 09:22:27', '2020-02-16 09:22:27'),
-(111, 15, 2, 'Vitamin C2', 18, 20000, NULL, '2020-02-16 09:22:27', '2020-02-16 09:22:27'),
-(112, 15, 2, 'Vitamin C2', 18, 20000, NULL, '2020-02-16 09:22:27', '2020-02-16 09:22:27'),
-(113, 16, 3, 'Khau trang', 12, 6000, 'Uống đúng liều', '2020-02-18 02:14:07', '2020-02-18 02:14:07'),
-(114, 16, 1, 'Vinatmin C2', 12, 20000, 'Uống đúng liều', '2020-02-18 02:14:07', '2020-02-18 02:14:07'),
-(115, 16, 1, 'Vinatmin C2', 121, 20000, 'Uống đúng liều', '2020-02-18 02:14:07', '2020-02-18 02:14:07'),
-(116, 16, 1, 'Vinatmin C2', 121, 20000, 'Uống đúng liều', '2020-02-18 02:14:07', '2020-02-18 02:14:07'),
-(117, 16, 1, 'Vinatmin C2', 121, 20000, 'Uống đúng liều', '2020-02-18 02:14:07', '2020-02-18 02:14:07');
+INSERT INTO `db_bangthuoc` (`id`, `id_khambenh`, `id_thuoc`, `ten`, `so_luong`, `loai`, `gia`, `gia_von`, `lieu_dung`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 'Khau trang', 10, 'Tube', 6000, 1000, '10 cái', '2020-02-22 04:42:53', '2020-02-22 04:42:53'),
+(2, 1, 3, 'Khau trang', 11, 'Tube', 6000, 1000, '11 cái', '2020-02-22 04:42:53', '2020-02-22 04:42:53'),
+(3, 1, 2, 'Vitamin C2', 11, 'Vieen', 20000, 1000, '11 viên', '2020-02-22 04:42:53', '2020-02-22 04:42:53'),
+(4, 1, 2, 'Vitamin C2', 12, 'Vieen', 20000, 1000, '12 viên', '2020-02-22 04:42:53', '2020-02-22 04:42:53'),
+(5, 2, 7, 'Mổ giác mạc', 112, 'Thủ thuật', 300000, 100, 'Uống đều đặn', '2020-02-22 09:00:52', '2020-02-22 09:00:52'),
+(6, 2, 7, 'Mổ giác mạc', 112, 'Thủ thuật', 300000, 100, 'Uống đều đặn', '2020-02-22 09:00:52', '2020-02-22 09:00:52');
 
 -- --------------------------------------------------------
 
@@ -143,18 +125,8 @@ CREATE TABLE `db_benhnhan` (
 --
 
 INSERT INTO `db_benhnhan` (`id`, `ma_bn`, `ho_ten`, `gioi_tinh`, `ngay_sinh`, `tuoi`, `dien_thoai`, `dia_chi`, `province_id`, `district_id`, `ward_id`, `ghi_chu`, `zalo`, `email`, `facebook`, `trang_thai`, `created_at`, `updated_at`) VALUES
-(1, 'BN160220', 'Hứa Văn Dũng', 0, '2020-02-28', '20', '0383868205', 'Q. Gò Vấp', '58', '652', '10347', 'Dũng', NULL, NULL, NULL, 1, '2020-02-15 18:46:41', '2020-02-15 21:41:45'),
-(2, 'BN160220', 'Nguyễn Hoàng Vinh', 0, '2020-02-20', '20', '0383868205', 'Q. Gò Vấp', '62', '693', '11030', 'Dũng', NULL, NULL, NULL, 1, '2020-02-15 21:10:49', '2020-02-15 21:50:03'),
-(3, 'BN160220', 'Nguyễn Văn Hoan', 1, '2020-02-19', '26', '0383868205', 'Q. Gò Vấp', '17', '220', '3043', 'Dũng', NULL, NULL, NULL, 1, '2020-02-14 21:11:13', '2020-02-15 23:19:51'),
-(6, 'BN160220', 'Nguyễn Văn Nga', 1, '2020-02-19', '26', '0383868205', 'Q. Gò Vấp', '17', '220', '3043', 'Dũng', NULL, NULL, NULL, 1, '2020-02-15 21:11:13', '2020-02-15 23:17:52'),
-(7, 'BN160220', 'Hứa Văn Duy', 0, '2020-02-19', '20', '0383868205', 'Q. Gò Vấp', '38', '470', '7605', 'Dũng', NULL, NULL, NULL, 1, '2020-02-15 21:11:40', '2020-02-16 08:31:52'),
-(8, 'BN160220', 'Nguyễn Hoàng Vinh', 0, '2020-02-20', '20', '0383868205', 'Q. Gò Vấp', '62', '693', '11030', 'Dũng', NULL, NULL, NULL, 1, '2020-02-15 21:10:49', '2020-02-16 07:26:08'),
-(9, 'BN160220', 'Nguyễn Văn Nam', 1, '2020-02-19', '26', '0383868205', 'Q. Gò Vấp', '17', '220', '3043', 'Dũng', NULL, NULL, NULL, 1, '2020-02-15 21:11:13', '2020-02-16 09:22:27'),
-(11, 'BN180220', 'Nguyễn Văn Vui', 0, '19/09/89', '20', '0383868205', 'Q. Gò Vấp', '17', '219', '3029', 'Dũng', NULL, NULL, NULL, 0, '2020-02-17 20:02:19', '2020-02-17 20:02:19'),
-(12, 'BN180220', 'Hoàng Văn Nam', 0, NULL, '25', '0383868205', 'Q. Gò Vấp', '4', '66', '1003', 'Dũng', NULL, NULL, NULL, 0, '2020-02-17 20:03:01', '2020-02-17 20:03:01'),
-(13, 'BN180220', 'Hứa Văn Bé', 0, '0101', '20', '0383868205', 'Q. Gò Vấp', '0', '0', '0', 'Dũng', NULL, NULL, NULL, 0, '2020-02-17 23:55:06', '2020-02-17 23:55:06'),
-(14, 'BN180220', 'Hứa Văn Dũng', 0, '12/96', '25', '0383868205', 'Q. Gò Vấp', '25', '343', '5302', 'Dũng', NULL, NULL, NULL, 1, '2020-02-17 23:59:41', '2020-02-18 02:14:07'),
-(15, 'BN180220', 'Lung Tị Linh', 1, '20/96', '18', '0383868205', 'Q Bình Thạnh', '23', '323', '5000', 'Hi', NULL, NULL, NULL, 0, '2020-02-18 00:01:21', '2020-02-18 00:01:21');
+(1, 'BN220220801', 'Nguyễn Việt Hoàng', 0, '20/96', '24', '0383868205', 'Đường số 17', '5', '73', '1113', 'Ghi chú', NULL, NULL, NULL, 1, '2020-02-22 04:36:42', '2020-02-22 04:42:53'),
+(2, 'BN220220846', 'Nguyễn Huy Hoàng', 0, '09/96', '24', '0383868205', 'Đường số 17', '38', '470', '7604', 'Dũng', NULL, NULL, NULL, 1, '2020-02-22 06:02:41', '2020-02-22 09:00:52');
 
 -- --------------------------------------------------------
 
@@ -165,9 +137,9 @@ INSERT INTO `db_benhnhan` (`id`, `ma_bn`, `ho_ten`, `gioi_tinh`, `ngay_sinh`, `t
 CREATE TABLE `db_khambenh` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_benhnhan` int(11) DEFAULT NULL,
-  `lydo_kham` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ly_do` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `chi_dinh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `thu_thuat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thu_thuat` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dan_do` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `chi_phi` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -178,15 +150,9 @@ CREATE TABLE `db_khambenh` (
 -- Dumping data for table `db_khambenh`
 --
 
-INSERT INTO `db_khambenh` (`id`, `id_benhnhan`, `lydo_kham`, `chi_dinh`, `thu_thuat`, `dan_do`, `chi_phi`, `created_at`, `updated_at`) VALUES
-(9, 1, 'Ko có lý do', 'Ko chỉ định', NULL, 'Ko dặn dò', 180000, '2020-01-15 21:41:45', '2020-02-15 21:41:45'),
-(10, 2, 'Thích thì khám thôi', 'Đây là chỉ định nè', NULL, 'Đây là dặn dò nè', 638000, '2020-03-15 21:50:03', '2020-02-15 21:50:03'),
-(11, 6, 'Khám chơi thôi', 'Hello chỉ định', NULL, 'Ko cần dặn dò', 8022000, '2020-02-15 23:17:52', '2020-02-15 23:17:52'),
-(12, 3, 'Hello', 'heheheheh', NULL, NULL, 6852000, '2020-05-15 23:19:51', '2020-02-15 23:19:51'),
-(13, 8, 'khong cs lý do', 'cd', NULL, 'dd', 0, '2020-02-16 07:26:08', '2020-02-16 07:26:08'),
-(14, 7, 'khong cs lý do', 'không có chỉ định', NULL, 'ko cần dặn dò', 1340000, '2020-02-16 08:31:52', '2020-02-16 08:31:52'),
-(15, 9, 'khong cs lý do', NULL, NULL, 'ko dặn dò', 4680000, '2020-12-16 09:22:26', '2020-02-16 09:22:26'),
-(16, 14, 'khong cs lý do', 'Ko được tắm trong 3 ngày', NULL, 'Ko dặn dò gì thêm', 7572000, '2020-02-18 02:14:07', '2020-02-18 02:14:07');
+INSERT INTO `db_khambenh` (`id`, `id_benhnhan`, `ly_do`, `chi_dinh`, `thu_thuat`, `dan_do`, `chi_phi`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Tái khám lần 1', NULL, NULL, '- Tái khám lại sau 03 ngày / tuần', 586000, '2020-02-22 04:42:53', '2020-02-22 04:42:53'),
+(2, 2, 'khong cs lý do', NULL, 'Nối 2 bờ mi,Viêm mống mắt,Cắt ống mi', 'Tái khám sau ... ngày / tuần', 67215000, '2020-02-22 09:00:52', '2020-02-22 09:00:52');
 
 -- --------------------------------------------------------
 
@@ -260,7 +226,11 @@ INSERT INTO `db_loaithuoc` (`id`, `ten`, `created_at`, `updated_at`) VALUES
 (2, 'Hoop', '2020-02-15 09:51:44', '2020-02-15 09:51:44'),
 (3, 'hello', '2020-02-15 11:38:58', '2020-02-15 11:38:58'),
 (4, 'holle', '2020-02-15 11:39:17', '2020-02-15 11:39:17'),
-(5, 'holo', '2020-02-15 11:39:37', '2020-02-15 11:39:37');
+(5, 'holo', '2020-02-15 11:39:37', '2020-02-15 11:39:37'),
+(6, 'ddonw vi', '2020-02-18 09:38:20', '2020-02-18 09:38:20'),
+(7, 'Đơn vị', '2020-02-19 22:29:30', '2020-02-19 22:29:30'),
+(8, 'Tube', '2020-02-20 08:33:35', '2020-02-20 08:33:35'),
+(9, 'Thủ thuật', '2020-02-22 08:11:47', '2020-02-22 08:11:47');
 
 -- --------------------------------------------------------
 
@@ -288,10 +258,17 @@ CREATE TABLE `db_thuoc` (
 --
 
 INSERT INTO `db_thuoc` (`id`, `ma`, `ten`, `id_loai`, `gia_ban`, `gia_von`, `so_luong`, `ngay_sx`, `han_sd`, `chi_tiet`, `created_at`, `updated_at`) VALUES
-(1, 'T0150220', 'Vinatmin C2', 0, 20000, 1000, -1229, NULL, NULL, NULL, '2020-02-15 09:50:46', '2020-02-18 02:14:07'),
-(2, 'T0150220', 'Vitamin C2', 1, 20000, 1000, 11, NULL, NULL, NULL, '2020-02-15 09:51:22', '2020-02-16 09:22:27'),
-(3, 'T0150220', 'Khau trang', 2, 6000, 1000, 1488, NULL, NULL, NULL, '2020-02-15 09:51:57', '2020-02-18 02:14:07'),
-(4, 'T0160220', '9292929', 2, 1000, 1000, -120, '2020-02-28', '2020-02-19', NULL, '2020-02-15 11:38:08', '2020-02-16 08:31:52');
+(1, 'T0150220', 'Vinatmin C2', 0, 20000, 1000, -1275, NULL, NULL, NULL, '2020-02-15 09:50:46', '2020-02-18 21:43:29'),
+(2, 'T0150220', 'Vitamin C2', 1, 20000, 1000, 41, NULL, NULL, NULL, '2020-02-15 09:51:22', '2020-02-22 04:42:53'),
+(3, 'T0150220', 'Khau trang', 8, 6000, 1000, 230, NULL, NULL, NULL, '2020-02-15 09:51:57', '2020-02-22 04:42:53'),
+(4, 'T0160220', '9292929', 2, 1000, 1000, -166, '2020-02-28', '2020-02-19', NULL, '2020-02-15 11:38:08', '2020-02-18 21:43:29'),
+(6, 'T220220840', 'Nối 2 bờ mi', 9, 2000, 1000, 10, NULL, NULL, NULL, '2020-02-22 08:12:16', '2020-02-22 08:12:16'),
+(7, NULL, 'Mổ giác mạc', 9, 300000, 100, -124, '2020-02-14', NULL, '1111111', '2020-02-22 08:17:09', '2020-02-22 09:00:52'),
+(8, 'K002', 'Kakkaa', 0, 0, 0, 0, NULL, NULL, NULL, '2020-02-22 08:27:02', '2020-02-22 08:27:02'),
+(9, NULL, 'hello', 0, 0, 0, 0, NULL, NULL, NULL, '2020-02-22 08:27:16', '2020-02-22 08:27:16'),
+(10, NULL, 'hello', 0, 0, 0, 0, NULL, NULL, NULL, '2020-02-22 08:27:33', '2020-02-22 08:27:33'),
+(11, NULL, 'hello', 9, 0, 0, 0, NULL, NULL, NULL, '2020-02-22 08:31:36', '2020-02-22 08:31:36'),
+(12, NULL, '0', 8, 0, 0, 0, NULL, NULL, NULL, '2020-02-22 08:31:59', '2020-02-22 08:31:59');
 
 -- --------------------------------------------------------
 
@@ -1062,8 +1039,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2020_02_07_020252_kinh', 2),
 (19, '2020_02_07_022330_loai_kinh', 2),
 (20, '2020_02_15_161733_bang_thuoc', 2),
-(23, '2020_02_15_165808_bang_kinh', 3),
-(26, '2020_02_15_170751_kham_benh', 4);
+(26, '2020_02_15_170751_kham_benh', 4),
+(27, '2020_02_15_165808_bang_kinh', 5);
 
 -- --------------------------------------------------------
 
@@ -47391,25 +47368,25 @@ ALTER TABLE `ward`
 -- AUTO_INCREMENT for table `db_bangkinh`
 --
 ALTER TABLE `db_bangkinh`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `db_bangthuoc`
 --
 ALTER TABLE `db_bangthuoc`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `db_benhnhan`
 --
 ALTER TABLE `db_benhnhan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `db_khambenh`
 --
 ALTER TABLE `db_khambenh`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `db_kinh`
@@ -47427,13 +47404,13 @@ ALTER TABLE `db_loaikinh`
 -- AUTO_INCREMENT for table `db_loaithuoc`
 --
 ALTER TABLE `db_loaithuoc`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `db_thuoc`
 --
 ALTER TABLE `db_thuoc`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `district`
@@ -47451,7 +47428,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `project`
