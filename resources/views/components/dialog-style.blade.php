@@ -7,7 +7,7 @@
         height: 100%;
         width: 100%;
         background: rgba(0, 0, 0, 0.4);
-        z-index: 9999999999;
+        z-index: 99;
     }
     .wrapper_dialog .dialog-k .fa-close{
         position: absolute;

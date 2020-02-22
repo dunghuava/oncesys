@@ -13,12 +13,6 @@ use App\BangKinh;
 use App\BangThuoc;
 use Illuminate\Support\Facades\DB;
 
-class benhnhan_obj{
-    public $thongtin=null;
-    public $khambenh=null;
-    public $bangthuoc=array();
-    public $bangkinh=null;
-};
 class backendController extends Controller
 {
     function index (){
@@ -81,7 +75,7 @@ class backendController extends Controller
         return response()->json($data, 200);
     }
     function thuoc (){
-        $select=['db_thuoc.id','db_thuoc.ten','db_loaithuoc.ten AS ten_loai','gia_von','gia_ban','so_luong','ngay_sx','han_sd','chi_tiet'];
+        $select=['db_thuoc.id','db_thuoc.ma','db_thuoc.ten','db_loaithuoc.ten AS ten_loai','gia_von','gia_ban','so_luong','ngay_sx','han_sd','chi_tiet'];
         $data['data']=Thuoc::select($select)->join('db_loaithuoc','id_loai','=','db_loaithuoc.id')->orderBy('db_thuoc.id','desc')->paginate(10);
         return view ('backend.thuoc.index',$data);
     }
@@ -90,7 +84,7 @@ class backendController extends Controller
         return view ('backend.printer.index');
     }
     function getThuoc(){
-        $data = Thuoc::select(['db_thuoc.id','db_thuoc.ten','db_thuoc.gia_ban','db_loaithuoc.ten as loai'])
+        $data = Thuoc::select(['db_thuoc.id','db_thuoc.ten','db_thuoc.gia_ban','db_thuoc.gia_von','db_loaithuoc.ten as loai'])
         ->join('db_loaithuoc','id_loai','db_loaithuoc.id')
         ->orderBy('ten','asc')->get();
         return response()->json($data, 200);
@@ -99,7 +93,7 @@ class backendController extends Controller
         return view ('backend.thuoc.category');
     }
     function kinh (){
-        $select=['db_kinh.id','db_kinh.ten','db_loaikinh.ten AS ten_loai','gia_von','gia_ban','so_luong','ngay_sx','han_sd','chi_tiet'];
+        $select=['db_kinh.id','db_kinh.ma','db_kinh.ten','db_loaikinh.ten AS ten_loai','gia_von','gia_ban','so_luong','ngay_sx','han_sd','chi_tiet'];
         $data['data']=Kinh::select($select)->join('db_loaikinh','id_loai','=','db_loaikinh.id')->orderBy('db_kinh.id','desc')->paginate(10);
         return view ('backend.kinh.index',$data);
     }
@@ -377,6 +371,16 @@ class backendController extends Controller
             ->orderBy('id','asc')
             ->get(); 
         return response()->json($data, 200);    
+    }
+    public static function getBenhNhanId2($id){
+        $select=['db_benhnhan.id','ho_ten','gioi_tinh','tuoi','dia_chi','dien_thoai','province._name AS province','district._name as district','ward._name as ward'];
+        $data=BenhNhan::select($select)->where('db_benhnhan.id',$id)
+            ->join('province','province_id','province.id')
+            ->join('district','district_id','district.id')
+            ->join('ward','ward_id','ward.id')
+            ->orderBy('id','asc')
+            ->get()->first(); 
+        return $data;  
     }
     function saveKhamBenh(Request $request){
         $khambenh = $request->khambenh;

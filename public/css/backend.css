@@ -84,9 +84,13 @@ table.table_glass{
     background: #eee;
 }
 table.table_glass td{
-    padding: 8px !important;
+    padding: 4px !important;
 }
-table.table_glass td p{width: 65px !important;font-weight: bold;}
+table.table_glass td p{
+    width: 100px !important;
+    font-weight: bold;
+    padding-left: 35px;
+}
 .table-donthuoc td,th{padding: 4px 10px;border: 1px solid #ccc;}
 .table-donthuoc {
     width: 100%;

@@ -15,7 +15,7 @@
 </div>
 
 {{-- part 1 --}}
-<div class="row bg-w mb15">
+<div class="row bg-w mb15" style="display: none">
         <div class="p10">
             <h2 class="circle_div fa fa-reply-all bg-primary m0"></h2>
             <span>Thuốc sử dụng trong ngày</span>

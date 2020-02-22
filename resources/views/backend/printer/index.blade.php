@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <button onclick="printJS('page_for_print', 'html')" class="btn btn-success">
+                    <button onclick="printJS('page_for_print', 'html');$('#PAGE-A5').css({'box-shadw':'unset'})" class="btn btn-success">
                         <span class="fa fa-print"></span>
                         Print
                     </button>

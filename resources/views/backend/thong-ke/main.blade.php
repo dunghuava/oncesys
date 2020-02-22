@@ -21,7 +21,9 @@
         padding: 40px 10px;
         background: #C3E4AD;
         border: 1px solid #ccc;
-        text-align: center
+        text-align: center;
+        max-height: 400px;
+        overflow: auto;
     }
 </style>
 <div class="row m0 p10 pl0" style="padding-top: 0px">

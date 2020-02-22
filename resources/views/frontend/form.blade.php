@@ -96,11 +96,11 @@
     </div>
 </div><br>
 <section class="bg-x">
-    <h4><b>[2] Danh sách tiếp nhận</b></h4>
-    <div class="row">
+    <h5><b>[2] Đã tiếp nhận</b></h5>
+    <div class="row" style="height: 121px;overflow: auto">
         <div class="col-md-12">
             @if (!$BenhNhan->isEmpty())
-                @foreach ($BenhNhan as $item)
+                @foreach ($BenhNhan as $k=> $item)
                     @include('frontend.item')
                 @endforeach
             @else

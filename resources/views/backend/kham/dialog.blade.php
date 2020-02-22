@@ -10,8 +10,7 @@
                     <div class="col-cm-12">
                         <div class="f-row mb10">
                             <label for="">Chọn thuốc</label>
-                            <select v-model="itemThuoc.id" @change="getText($event)" id="" class="form-control">
-                                <option value="0">--Lựa chọn--</option>
+                            <select style="width: 100%" v-model="itemThuoc.id" @change="getText($event)" class="form-control">
                                 <option v-for="item in list_thuoc" :value="item.id">@{{item.ten}}</option>
                             </select>
                         </div>

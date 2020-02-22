@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             @foreach ($data as $i => $item)
-            <tr data-toggle="{{$i!=0 ? 'collapse':''}}" data-target="#tr_{{$i}}">
+            <tr data-toggle="collapse" data-target="#tr_{{$i}}">
                     <td class="w50">
                         <div class="ckbox">
                             <input type="checkbox" name="cko">
@@ -39,7 +39,7 @@
                     <td class="w100">{{$item->dien_thoai}}</td>
                     <td class="w80 text-center"><b>{{$item->created_at}}</b></td>
             </tr>
-            <tr id="tr_{{$i}}" class="collapse {{$i==0 ? 'in':''}}" style="background: white !important">
+            <tr id="tr_{{$i}}" class="collapse" style="background: white !important">
                 <td colspan="2" class="text-center">
                     <p>
                         <img style="width:100px" src="public/images/no-img.png" alt="">
@@ -58,7 +58,7 @@
                         <b>Chi phí: </b>{{number_format($khambenh['chi_phi'])}} VNĐ
                     </p>
                     <p>
-                        <table border="1px" style="border-collapse: separate;display: none">
+                        <table border="1px" style="border-collapse: separate">
                             <tr>
                                 <td rowspan="2">Không kính</td>
                                 <td>MP</td>
@@ -129,7 +129,7 @@
                         <a href="{{asset('b/printer/?target=').$item['id']}}">
                             <button class="btn btn-primary">
                                 <span class="fa fa-save"></span>
-                                In hóa đơn
+                                Xem phiếu khám
                             </button>
                         </a>
                     </p>

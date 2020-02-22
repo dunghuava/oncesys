@@ -33,8 +33,8 @@
                     </li>
                     <li id="hoa_don">
                         <a title="Hóa đơn" href="{{asset('b/bills')}}">
-                            <span class="fa fa-usd"></span>
-                            Hóa đơn
+                            <span class="fa fa-history"></span>
+                            Lịch sử khám
                         </a>
                     </li>
                     <li id="thong_ke">

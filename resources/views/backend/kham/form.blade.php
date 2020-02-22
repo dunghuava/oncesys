@@ -22,7 +22,9 @@
                 </tr>
                 <tr>
                     <td> MT</td>
-                    <td><input v-model="bangkinh.khongkinh_mt" type="text" class="form-control"></td>
+                    <td>
+                        <input v-model="bangkinh.khongkinh_mt" type="text" class="form-control">
+                    </td>
                     <td> MT</td>
                     <td><input v-model="bangkinh.kinhlo_mt" type="text" class="form-control"></td>
                 </tr>
@@ -81,7 +83,6 @@
     <div class="col-md-12">
         <div class="f-row">
             <label for="">Chỉ định</label>
-            <textarea v-model="khambenh.chi_dinh" style="resize:none" name="" id="" rows="4" class="form-control"></textarea>
         </div>
     </div>
 </div>

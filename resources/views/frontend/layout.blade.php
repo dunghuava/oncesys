@@ -40,9 +40,9 @@
         var sticky = navbar.offsetTop;
         function myFunction() {
         if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
+            navbar.classList.add("sticky_del")
         } else {
-            navbar.classList.remove("sticky");
+            navbar.classList.remove("sticky_del");
         }
         }
     </script>

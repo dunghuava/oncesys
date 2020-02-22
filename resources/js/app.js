@@ -5,6 +5,8 @@
  */
 
 require('./bootstrap');
+require('select2');
+
 
 window.Vue = require('vue');
 
@@ -26,7 +28,6 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 
 function rInt() {
     var date = new Date();
@@ -126,6 +127,8 @@ Number.prototype.format = function (n, x, s, c) {
 };
 const back_end = new Vue({
     el: '#backend-thuoc',
+    components: {
+    },
     data: {
         isAddCate: false,
         isAdd: false,
@@ -149,6 +152,8 @@ const back_end = new Vue({
         str: ''
     },
     created() {
+        console.log(this.options1);
+
         this.getCateThuoc(),
             this.getCateKinh(),
             this.getAllThuoc()
@@ -184,7 +189,10 @@ const back_end = new Vue({
             var item = this.list_thuoc.find(item => item.id == event.target.value);
             this.itemThuoc.ten = item.ten;
             this.itemThuoc.gia = item.gia_ban;
+            this.itemThuoc.gia_von = item.gia_von;
             this.itemThuoc.loai = item.loai;
+            console.log(event);
+
         },
         addDSThuoc: function () {
             var item = {
@@ -192,6 +200,7 @@ const back_end = new Vue({
                 ten: this.itemThuoc.ten,
                 so_luong: this.itemThuoc.so_luong,
                 gia: this.itemThuoc.gia,
+                gia_von: this.itemThuoc.gia_von,
                 loai: this.itemThuoc.loai,
                 lieu_dung: this.itemThuoc.lieu_dung
             }
@@ -306,3 +315,5 @@ const back_end = new Vue({
         }
     }
 })
+
+// vue select
