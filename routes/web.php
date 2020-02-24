@@ -21,12 +21,12 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout','authController@logout');
 });
 
-Route::group(['prefix' => 'f','middleware'=>'authMiddleware'], function () {
+Route::group(['prefix' => 'f'], function () {
     Route::get('/','frontendController@index');
     Route::post('/','frontendController@saveBenhNhan');
 });
 
-Route::group(['prefix' => 'b','middleware'=>'authMiddleware'], function () {
+Route::group(['prefix' => 'b'], function () {
     Route::get('/','backendController@index');
     Route::get('medicine','backendController@thuoc');
     Route::get('medicine/category','backendController@thuocCategory');

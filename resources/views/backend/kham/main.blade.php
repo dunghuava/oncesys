@@ -1,6 +1,6 @@
 <div class="row m0">
     <div class="col-md-4 p0">
-        <h3 class="m0"><b>Khám bệnh</b></h3><br>
+        <h3 class="m0"><b>Khám bệnh</b></h3>
     </div>
     <div class="col-md-8 text-right">
         <button class="btn btn-success">

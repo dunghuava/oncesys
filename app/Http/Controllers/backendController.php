@@ -217,7 +217,7 @@ class backendController extends Controller
                 $data.'</table>';
         }
         elseif ($type=='KINH'){
-            $data='kinh';
+            $data='<h2>Chưa có dữ liệu</h2>';
         }
         elseif ($type=='THUOC'){
             $data='';
@@ -394,16 +394,22 @@ class backendController extends Controller
         {
             $khambenh['chi_phi']=str_replace('.','',$khambenh['chi_phi']);
             $id_khambenh = KhamBenh::create($khambenh)->id;
-            $bangkinh['id_khambenh']=$id_khambenh;
-            BangKinh::create($bangkinh);
-            foreach ($bangthuoc as $item){
-                $item['id_khambenh']=$id_khambenh;
-                $temp = Thuoc::find($item['id_thuoc']);
-                $x = $temp['so_luong']-$item['so_luong'];
-                Thuoc::where('id',$item['id_thuoc'])->update(['so_luong'=>$x]);
-                BangThuoc::create($item);
+            if (!empty($bangkinh)){
+                $bangkinh['id_khambenh']=$id_khambenh;
+                BangKinh::create($bangkinh);
+            }
+            if (!empty($bangthuoc)){
+                foreach ($bangthuoc as $item){
+                    $item['id_khambenh']=$id_khambenh;
+                    $temp = Thuoc::find($item['id_thuoc']);
+                    $x = $temp['so_luong']-$item['so_luong'];
+                    Thuoc::where('id',$item['id_thuoc'])->update(['so_luong'=>$x]);
+                    BangThuoc::create($item);
+                }
             }
             BenhNhan::where('id',$khambenh['id_benhnhan'])->update(['trang_thai'=>1]);
+            $data['id']=$khambenh['id_benhnhan'];
+            return response()->json($data, 200);
        }
     }
 }

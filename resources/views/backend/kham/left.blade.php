@@ -15,6 +15,11 @@
                     </div>
                 </div>
             @endforeach
+            @if($BenhNhan->isEmpty())
+            <div class="text-center">
+                <img style="width: 150px" src="public/images/empty.png" alt="">
+            </div>
+            @endif
         </div>
     </div>
 </div>

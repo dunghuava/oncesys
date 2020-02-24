@@ -1,9 +1,4 @@
-<style>
-    .input_left input{
-        width: 228px;
-        float: left !important;
-    }
-</style>
+
 <form id="form_khambenh" onsubmit="return false" action="" method="post">
 <input type="hidden" id="_token" value="{{csrf_token()}}">
 <div class="row mb10">
@@ -38,30 +33,28 @@
                 <tr>
                     <td rowspan="2"><p>Kính cũ</p></td>
                     <td> MP</td>
-                    <td><input name="kinhcu_mp" type="text" class="form-control"></td>
-                    <td rowspan="2"><p style="color: green;">Thị lực đạt được <span class="fa fa-arrow-right"></span></p></td>
-                    <td> MP</td>
-                    <td><input name="thiluc_cu_mp" type="text" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td> MT</td>
-                    <td><input name="kinhcu_mt" type="text" class="form-control"></td>
-                    <td> MT</td>
-                    <td><input name="thiluc_cu_mt" type="text" class="form-control"></td>
-                </tr>
-                <tr>
+                    <td class="inline form-inline">
+                        <input style="float: left;" name="kinhcu_mp" type="text" class="form-control">
+                        <input style="width: 100px" name="thiluc_cu_mp" type="text" class="form-control">
+                    </td>
                     <td rowspan="2"><p>Kính mới</p></td>
                     <td> MP</td>
-                    <td><input name="kinhmoi_mp" type="text" class="form-control"></td>
-                    <td rowspan="2"><p style="color: green">Thị lực đạt được <span class="fa fa-arrow-right"></span></p></td>
-                    <td> MP</td>
-                    <td><input name="thiluc_moi_mp" type="text" class="form-control"></td>
+                    <td class="form-inline">
+                        <input style="float: left;" name="kinhmoi_mp" type="text" class="form-control">
+                        <input style="width: 100px" name="thiluc_moi_mp" type="text" class="form-control">
+                    </td>
                 </tr>
                 <tr>
                     <td> MT</td>
-                    <td><input name="kinhmoi_mt" type="text" class="form-control"></td>
+                    <td class="form-inline">
+                        <input style="float: left;" name="kinhcu_mt" type="text" class="form-control">
+                        <input style="width: 100px" name="thiluc_cu_mt" type="text" class="form-control">
+                    </td>
                     <td> MT</td>
-                    <td><input name="thiluc_moi_mt" type="text" class="form-control"></td>
+                    <td class="form-inline">
+                        <input style="float: left;" name="kinhmoi_mt" type="text" class="form-control">
+                        <input style="width: 100px" name="thiluc_moi_mt" type="text" class="form-control">
+                    </td>
                 </tr>
             </table>
         </div>
@@ -69,8 +62,8 @@
             <label for=""></label>
             <table class="table_glass input_left" style="margin-top:15px">
                 <tr>
-                    <td rowspan="2" style="width: 146px"><p>Nhãn áp</p></td>
-                    <td style="width: 40px"> MP</td>
+                    <td rowspan="2" style="width: 100px"><p>Nhãn áp</p></td>
+                    <td style="width: 30px"> MP</td>
                     <td><input name="nhanap_mp" type="text" class="form-control"></td>
                 </tr>
                 <tr>
@@ -106,13 +99,15 @@
             <label for="">Đơn thuốc</label>
             <table class="table-donthuoc">
                 <tr>
-                    <th style="width: 90px">S.t</th>
+                    <th style="width: 90px">STT</th>
                     <th style="width: 200px">Tên thuốc</th>
                     <th style="width: 75px">Số lượng</th>
                     <th style="width: 300px">Liều dùng</th>
                     <th style="width: 40px" class="text-right">+/-</th>
                 </tr>
-                <tbody id="list_thuoc_chon"></tbody>
+                <tbody id="list_thuoc_chon">
+                    <tr><td class="text-center" colspan="5">--- danh sách trống ---</td></tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -132,6 +127,7 @@
             <input id="chi_phi_kham" onkeyup="draw_options_thuoc()" style="width: 100%" type="number" min="0" class="form-control" value="0">
             <span style="margin-top: 8px;margin-left: 5px">VNĐ</span>
         </div>
+        <p style="margin:10px 0px 0px 70px">(*) Bao gồm cả chi phí thủ thuật</p>
     </div>
 </div>
 <div class="row mb10">
@@ -146,10 +142,18 @@
     <div class="col-md-6"><br>
         <div class="f-row">
             <label for=""></label>
-            <button type="button" onclick="$('#dialog_themthuoc').show()" class="btn btn-primary"><span class="fa fa-plus"></span> Kê thuốc</button>
+            <button type="button" onclick="$('#dialog_themthuoc').show();getALlThuoc()" class="btn btn-primary"><span class="fa fa-plus"></span> Kê thuốc</button>
             <label style="min-width:10px !important" for=""></label>
             <button onclick="saveKhamBenh()" type="submit" class="btn btn-success"><span class="fa fa-print"></span> Lưu & In hóa đơn</button>
+            <label style="min-width:10px !important" for=""></label>
+            <button type="button" class="btn btn-warning"><span class="fa fa-sign-out"></span> Xuất đơn kính</button>
         </div>
     </div>
 </div>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $('input').prop('autocomplete','off')
+    });
+</script>

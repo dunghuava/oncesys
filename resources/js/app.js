@@ -250,6 +250,7 @@ const back_end = new Vue({
                 }).catch(function (e) {
                     setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
                 });
+                this.isAdd = false;
             }
         },
         addCateKinh: function () {
@@ -262,6 +263,7 @@ const back_end = new Vue({
                 }).catch(function (e) {
                     setMessage('Lỗi', 'Cập nhật dữ liệu không thành công')
                 });;
+                this.isAdd = false;
             }
         },
         addThuoc: function () {

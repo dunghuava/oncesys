@@ -1,7 +1,7 @@
 <?php 
     use App\http\Controllers\backendController;
     $ctrler = new backendController();
-    $benhnhan=$ctrler->getBenhNhanId2($_GET['target']);
+    $benhnhan=$ctrler->getBenhNhanId2($_GET['s_id']);
     $khambenh=$ctrler->getKhamBenh($benhnhan['id']); 
     $bangthuoc=$ctrler->getBangThuoc($khambenh['id']);
     $bangkinh=$ctrler->getBangKinh($khambenh['id']);
@@ -30,7 +30,7 @@
         }
     }
     #logo{
-        width: 111px;
+        width: 131px;
     }
     #print_table td{padding:0px 0px;font-size: 14px}
     .table-kq td{text-align: center}
@@ -51,15 +51,15 @@
         </tr>
         <tr>
             <td><p>Họ và tên:</p></td>
-            <td colspan="6"><p><b>{{$benhnhan['ho_ten']}}</b></p></td>
+            <td colspan="6"><p><b style="text-transform: uppercase">{{$benhnhan['ho_ten']}}</b></p></td>
             <td><p>Tuổi:</p></td>
             <td><p>{{$benhnhan['tuoi']}}</p></td>
             <td colspan="4"><p>Giới tính: {{$benhnhan['gioi_tinh']==0 ? 'Nam':'Nữ'}}</p></td>
         </tr>
         <tr>
-            <td>Địa chỉ:</td>
-            <td colspan="8">{{$benhnhan['ward'].', '.$benhnhan['district'].', '.$benhnhan['province']}}</td>
-            <td colspan="2">SĐT: {{$benhnhan['dien_thoai']}}<p></p></td>
+            <td><p>Địa chỉ:</p></td>
+            <td colspan="6"><p>{{$benhnhan['ward'].', '.$benhnhan['district'].', '.$benhnhan['province']}}</p></td>
+            <td colspan="4"><p>SĐT: {{$benhnhan['dien_thoai']}}</p></td>
         </tr>
         <tr>
             <td colspan="10">
@@ -95,8 +95,10 @@
             <td colspan="2">
                 <p>Chẩn đoán:</p>
             </td>
-            <td colspan="5"><p><b>MP</b>: {{$bangkinh['chandoan_mp']}}</p></td>
-            <td colspan="4"><p><b>MT</b>: {{$bangkinh['chandoan_mt']}}</p></td>
+            <td colspan="5">
+                <p><b>MP</b>: {{$bangkinh['chandoan_mp']}}</p>
+                <p><b>MT</b>: {{$bangkinh['chandoan_mt']}}</p>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
@@ -111,18 +113,18 @@
                 <table border="1px" style="width: 100%" class="table-kq">
                     <tr>
                         <td>STT</td>
-                        <td>Tên thuốc</td>
-                        <td>Số lượng</td>
-                        <td>Đơn vị</td>
-                        <td>Liều dùng</td>
+                        <td style="text-align:left;padding-left:5px">Tên thuốc</td>
+                        <td style="text-align:left;padding-left:5px">Số lượng</td>
+                        <td style="text-align:left;padding-left:5px">Đơn vị</td>
+                        <td style="text-align:left;padding-left:5px">Liều dùng</td>
                     </tr>
                     @foreach ($bangthuoc as $k => $item)
                         <tr>
                             <td>{{++$k}}</td>
-                            <td>{{$item['ten']}}</td>
-                            <td>{{$item['so_luong']}}</td>
-                            <td>{{$item['loai']}}</td>
-                            <td>{{$item['lieu_dung']}}</td>
+                            <td style="text-align:left;padding-left:5px">{{$item['ten']}}</td>
+                            <td style="text-align:left;padding-left:5px">{{$item['so_luong']}}</td>
+                            <td style="text-align:left;padding-left:5px">{{$item['loai']}}</td>
+                            <td style="text-align:left;padding-left:5px">{{$item['lieu_dung']}}</td>
                         </tr>
                     @endforeach                      
                 </table><br>
@@ -140,10 +142,10 @@
             <td colspan="4" class="center">
                 <p>Ngày khám</p>
                 <p>Ngày {{date('d')}} Tháng {{date('m')}} Năm {{date('Y')}}</p>
-                <br><br>
+                <br>
                 <h4 align="center">BS. LÊ PHI HOÀNG</h4>
             </td>
         </tr>
     </table>
 </div>
-<br><br><br><br>
+<br><br><br>

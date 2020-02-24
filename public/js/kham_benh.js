@@ -37,11 +37,12 @@ function getALlThuoc() {
             var options = '';
             arr_thuoc = response;
             $.each(response, function (i, item) {
-                options += '<option key="' + i + '" value="' + item.id + '">' + item.ten + '<option>';
+                options += '<option value="' + item.id + '">' + item.ten + '</option>';
             });
             $('#select_thuoc').html(options);
         }
     });
+
 }
 
 function addDSThuoc() {
@@ -124,20 +125,41 @@ function saveKhamBenh() {
 
     db_khambenh.dan_do = form.find("[name='dan_do']").val();
     db_khambenh.thu_thuat = $('#select_thuthuat').val();
-    db_khambenh.thu_thuat = db_khambenh.thu_thuat.join();
+    if (db_khambenh.thu_thuat == '') {
+        db_khambenh.thu_thuat = db_khambenh.thu_thuat.join();
+    }
 
-    lazyload();
-    $.ajax({
-        type: "post",
-        url: "api/b/save-kham-benh",
-        data: { 'khambenh': db_khambenh, 'bangkinh': db_bangkinh, 'bangthuoc': db_bangthuoc, '_token': _token },
-        success: function (response) {
-            setMessage('Thông báo', 'Lưu dữ liệu thành công')
-        },
-        error: function () {
-            setMessage('Lỗi', 'Lưu dữ liệu không thành công')
+
+    //
+    $.confirm({
+        title: 'Thông báo',
+        content: 'Lưu lại thông tin và xuất hóa đơn ?',
+        autoClose: 'cancelAction|8000',
+        buttons: {
+            deleteUser: {
+                text: 'Đồng ý',
+                action: function () {
+                    lazyload();
+                    $.ajax({
+                        type: "post",
+                        url: "api/b/save-kham-benh",
+                        data: { 'khambenh': db_khambenh, 'bangkinh': db_bangkinh, 'bangthuoc': db_bangthuoc, '_token': _token },
+                        success: function (response) {
+                            console.log(response);
+                            setMessage('Thông báo', 'Lưu dữ liệu thành công');
+                            setTimeout(() => {
+                                location.href = 'b/printer?s_id=' + response.id;
+                            }, 1500);
+                        },
+                        error: function () {
+                            setMessage('Lỗi', 'Lưu dữ liệu không thành công')
+                        }
+                    });
+                }
+            },
+            cancelAction: function () {
+            }
         }
     });
-
-
+    //
 }

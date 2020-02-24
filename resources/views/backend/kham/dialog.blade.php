@@ -30,7 +30,7 @@
                 </div>
         </div>
         <div class="dialog-f">
-            <button onclick="$('#dialog_themthuoc').hide()" class="btn btn-default">Close</button>
+            <button type="button" onclick="$('#dialog_themthuoc').hide()" class="btn btn-default">Close</button>
             <button type="submit" class="btn btn-success"> <span class="fa fa-plus"></span> Thêm</button>
         </div>
     </div>

@@ -54,11 +54,12 @@
                     <p class="p-horizon">
                         <b>Địa chỉ: </b> {{$item->ward.', '.$item->district.', '.$item->province}}
                         <b>Lý do khám: </b>{{$khambenh['ly_do']}}
-                        <b>Chỉ định: </b>{{$khambenh['chi_dinh']}}
+                        <b>Chẩn đoán: </b>{{'MP: '.$bangkinh['chandoan_mp'].' | MT: '.$bangkinh['chandoan_mt']}}
+                        <b>Thủ thuật: </b>{{$khambenh['thu_thuat']}}
                         <b>Chi phí: </b>{{number_format($khambenh['chi_phi'])}} VNĐ
                     </p>
                     <p>
-                        <table border="1px" style="border-collapse: separate">
+                        <table border="1px" style="border-collapse: separate;display: none">
                             <tr>
                                 <td rowspan="2">Không kính</td>
                                 <td>MP</td>
@@ -120,13 +121,13 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4" class="text-center"><i>chưa có dữ liệu</i></td>
+                                    <td colspan="5" class="text-center"><i>chưa có dữ liệu</i></td>
                                 </tr>
                             @endif
                         </table>
                     </p>
                     <p class="text-left">
-                        <a href="{{asset('b/printer/?target=').$item['id']}}">
+                        <a href="{{asset('b/printer/?s_id=').$item['id']}}">
                             <button class="btn btn-primary">
                                 <span class="fa fa-save"></span>
                                 Xem phiếu khám

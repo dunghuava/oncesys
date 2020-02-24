@@ -1,9 +1,9 @@
+<link rel="stylesheet" href="public/cld/demo.css"/>
+<link rel="stylesheet" href="public/cld/theme1.css"/>
 <div class="row bg-w p0 m0">
-    <div class="col-md-12"><br>
-        <h4 class="m0"><b>Cập nhật</b></h4>
-        <h2 class="circle_div fa fa-reply-all bg-primary"></h2>
-    </div>
-    <div class="col-md-12">
-
+    <div class="col-md-12 text-center"><br>
+        <div style="width: 100%;" id="caleandar"></div>
     </div>
 </div>
+<script type="text/javascript" src="public/cld/caleandar.js"></script>
+<script type="text/javascript" src="public/cld/demo.js"></script>

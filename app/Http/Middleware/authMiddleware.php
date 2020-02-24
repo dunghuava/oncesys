@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class authMiddleware
+class AuthMiddleware
 {
     /**
      * Handle an incoming request.

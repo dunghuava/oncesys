@@ -10,7 +10,7 @@
                     <li>
                         <a title="Dasboard" href="{{asset('b')}}">
                             <span class="fa fa-home"></span>
-                            Dasboard
+                            Tổng quan
                         </a>
                     </li>
                     <li id="kham_benh">

@@ -15,7 +15,7 @@
             <div class="col-md-7 text-right">
                 <ul>
                     <li>
-                        <a title="Khám bệnh" target="blank" href="{{asset('b')}}"><span class="fa fa-heart"></span></a>
+                        <a title="Khám bệnh" href="{{asset('b')}}"><span class="fa fa-heart"></span></a>
                     </li>
                     <li>
                         <a v-on:click="isabout=true" title="Hỗ trợ" style="cursor: pointer"><span class="fa fa-exclamation"></span></a>

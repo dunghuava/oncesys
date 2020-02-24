@@ -1,6 +1,6 @@
 <div class="row m0">
     <div class="col-md-4 p0">
-        <h3 class="m0"><b>Quản lý thuốc <span style="opacity: 0.2">|</span> thủ thuật</b></h3><br>
+        <h3 class="m0"><b>Quản lý thuốc <span style="opacity: 0.2"></span></b></h3><br>
     </div>
     <div class="col-md-8 text-right">
         <button v-on:click="isAdd=true;isUpdate=false;" class="btn btn-success">

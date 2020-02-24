@@ -50,6 +50,7 @@
         </div>
 </div>
 {{-- part 2 --}}
+<hr>
 <div class="row bg-w mb15">
         <div class="p10">
             <h2 class="circle_div fa fa-reply-all bg-primary m0"></h2>
