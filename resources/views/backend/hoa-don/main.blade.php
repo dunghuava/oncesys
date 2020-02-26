@@ -3,7 +3,9 @@
         <form class="form-inline" action="{{asset('b/bills/search/')}}" method="get">
             <div class="row">
                 @csrf
-                <div class="col-md-9"></div>
+                <div class="col-md-9 text-left">
+                    <h3 class="m0"><b>Lịch sử khám bệnh</b></h3>
+                </div>
                 <div class="col-md-3 input-group" style="display: inline-flex">
                     <input value="{{isset($_GET['q']) ? $_GET['q']:''}}" name="q" required style="width: 100%;" placeholder="Tìm kiếm theo mã, tên bệnh nhân"  type="text" class="form-control">
                     <button style="border-top-left-radius:0px;border-bottom-left-radius:0px" type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>

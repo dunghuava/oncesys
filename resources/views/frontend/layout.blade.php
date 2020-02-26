@@ -6,7 +6,7 @@
         <base href="{{asset('/')}}">
         <link rel="shortcut icon" href="public/images/favicon.png" type="image/x-icon">
         <title>@yield('title')</title>
-
+        @include('components.meta')
         <!-- Fonts -->
         <script src="public/js/jquery.js"></script>
         <script src="public/bootstrap/js/moment.min.js"></script>

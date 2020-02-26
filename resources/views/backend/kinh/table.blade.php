@@ -3,6 +3,7 @@
 @endif
 
 <div class="box bg-w">
+    <input type="hidden" id="next_index" next-index="{{count($data)}}">
     <table style="width: 100%" class="m-table">
         <thead>
             <tr>

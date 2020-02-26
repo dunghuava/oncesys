@@ -2,6 +2,7 @@
 @section('title','Tiếp tân')
 
 @section('content')
+    <div id="backend-thuoc"></div>
     <div id="front_end">
         @include('frontend.nav')
         <div class="container">
@@ -24,6 +25,7 @@
     </div>
     <script>
         $(document).ready(function () {
+            $('input').prop('autocomplete','off');
             $(".datepicker").datepicker({ 
                     autoclose: true, 
                     todayHighlight: true,

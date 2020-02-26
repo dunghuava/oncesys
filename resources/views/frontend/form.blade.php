@@ -4,7 +4,7 @@
         <div class="col-md-3">
             <div class="f-row">
                 <label for="">Mã</label>
-                <input required name="ma_bn" v-model="benh_nhan.ma" type="text" class="form-control">
+                <input id="next_index" next-index="{{count($BenhNhan)}}" required name="ma_bn" v-model="benh_nhan.ma" type="text" class="form-control">
             </div>
         </div>
         <div class="col-md-9">

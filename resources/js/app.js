@@ -31,7 +31,10 @@ window.Vue = require('vue');
 
 function rInt() {
     var date = new Date();
-    return date.getDate() + '' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '' + date.getFullYear().toString().substr(2, 2) + '_' + date.getMilliseconds();
+    var nextIndex = document.getElementById('next_index').getAttribute('next-index');
+    nextIndex = parseInt(nextIndex) + 1;
+    nextIndex = nextIndex < 10 ? '0' + nextIndex : nextIndex;
+    return date.getDate() + '' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '' + date.getFullYear().toString().substr(2, 2) + '-' + nextIndex;
 }
 
 

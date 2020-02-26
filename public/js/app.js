@@ -55441,7 +55441,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 function rInt() {
   var date = new Date();
-  return date.getDate() + '' + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '' + date.getFullYear().toString().substr(2, 2) + '_' + date.getMilliseconds();
+  var nextIndex = document.getElementById('next_index').getAttribute('next-index');
+  nextIndex = parseInt(nextIndex) + 1;
+  nextIndex = nextIndex < 10 ? '0' + nextIndex : nextIndex;
+  return date.getDate() + '' + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '' + date.getFullYear().toString().substr(2, 2) + '-' + nextIndex;
 }
 
 var vi_location = {
@@ -55683,6 +55686,7 @@ var back_end = new Vue({
         })["catch"](function (e) {
           setMessage('Lỗi', 'Cập nhật dữ liệu không thành công');
         });
+        this.isAdd = false;
       }
     },
     addCateKinh: function addCateKinh() {
@@ -55701,6 +55705,7 @@ var back_end = new Vue({
           setMessage('Lỗi', 'Cập nhật dữ liệu không thành công');
         });
         ;
+        this.isAdd = false;
       }
     },
     addThuoc: function addThuoc() {

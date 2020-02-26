@@ -6,15 +6,15 @@
         <base href="{{asset('/')}}">
         <link rel="shortcut icon" href="public/images/favicon.png" type="image/x-icon">
         <title>@yield('title')</title>
-
+        @include('components.meta')
         <!-- Fonts -->
         <script src="public/js/jquery.js"></script>
         <link rel="stylesheet" href="public/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="public/bootstrap/css/datetimepicker.css">
-        <link rel="stylesheet" href="public/css/backend.css">
+        <link rel="stylesheet" href="public/css/backend.css?v=123">
         <link rel="stylesheet" href="public/select2/select2.css">
         <link rel="stylesheet" href="public/jqc/jqc.css">
-        <link rel="stylesheet" href="public/printjs/print.min.css">
+        <link rel="stylesheet" href="public/printjs/print.min.css?v=123">
         <link rel="stylesheet" href="public/font-awesome/css/font-awesome.css">
         <script src="public/bootstrap/js/bootstrap.js"></script>
         <script src="public/js/chart.min.js"></script>

@@ -3,8 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+         @include('components.meta')
         <base href="{{asset('/')}}">
         <title>Đăng nhập</title>
+        @include('components.meta')
 
         <!-- Fonts -->
         <link rel="shortcut icon" href="public/images/favicon.png" type="image/x-icon">
@@ -31,10 +33,12 @@
                 <p><input type="text" name="username"></p>
                 <p><input type="password" name="password"></p>
             </div>
-            <div class="f-footer">
+            <div class="f-footer mb0" style="padding-bottom: 0px">
                 <p>
                     <button onclick="this.innerHTML='Vui lòng chờ...'"type="submit">Đăng nhập</button>
                 </p>
+                <br>
+                <marquee behavior="" direction="" scrollamount="3" style="font-size: 12px">Liên hệ tư vấn thiết kế website, phần mềm quản lý chuyên nghiệp - Hotline / zalo : 0383868205 Mr.Dung </marquee>
             </div>
         </form>
     </body>
