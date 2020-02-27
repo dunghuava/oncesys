@@ -10,6 +10,7 @@
     color: #fff;
 }
 .item-user-left{
+    margin-top: 5px;
     background: white;
 }
 .item-user-left.active{

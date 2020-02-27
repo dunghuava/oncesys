@@ -146,9 +146,9 @@ class backendController extends Controller
         ];
         
         $data['data']=BenhNhan::select($select)->where('trang_thai',1)
-            ->join('province','province_id','province.id')
-            ->join('district','district_id','district.id')
-            ->join('ward','ward_id','ward.id')
+            ->leftjoin('province','province_id','province.id')
+            ->leftjoin('district','district_id','district.id')
+            ->leftjoin('ward','ward_id','ward.id')
             ->orderBy('db_benhnhan.updated_at','desc')
             ->paginate(10);
         return view ('backend.hoa-don.index',$data);
@@ -284,9 +284,9 @@ class backendController extends Controller
         $data['data']=BenhNhan::select($select)
             ->where('ho_ten','like','%'.$q.'%')
             ->orWhere('dien_thoai','like','%'.$q.'%')
-            ->join('province','province_id','province.id')
-            ->join('district','district_id','district.id')
-            ->join('ward','ward_id','ward.id')
+            ->leftjoin('province','province_id','province.id')
+            ->leftjoin('district','district_id','district.id')
+            ->leftjoin('ward','ward_id','ward.id')
             ->orderBy('db_benhnhan.id','desc')
             ->paginate(10);
        $data['mess']='Kết quả tìm kiếm ('.count($data['data']).')';
@@ -358,9 +358,9 @@ class backendController extends Controller
     function khamBenh(){
         $select=['db_benhnhan.id','ho_ten','ma_bn','dia_chi','dien_thoai','province._name AS province','district._name as district','ward._name as ward'];
         $data['BenhNhan']=BenhNhan::select($select)->where('trang_thai','0')
-            ->join('province','province_id','province.id')
-            ->join('district','district_id','district.id')
-            ->join('ward','ward_id','ward.id')
+            ->leftjoin('province','province_id','province.id')
+            ->leftjoin('district','district_id','district.id')
+            ->leftjoin('ward','ward_id','ward.id')
             ->orderBy('id','asc')
             ->get();
         return view ('backend.kham.index',$data);
@@ -369,9 +369,9 @@ class backendController extends Controller
     function getBenhNhanId($id){
         $select=['db_benhnhan.id','ho_ten','gioi_tinh','tuoi','dia_chi','dien_thoai','province._name AS province','district._name as district','ward._name as ward'];
         $data=BenhNhan::select($select)->where('db_benhnhan.id',$id)
-            ->join('province','province_id','province.id')
-            ->join('district','district_id','district.id')
-            ->join('ward','ward_id','ward.id')
+            ->leftjoin('province','province_id','province.id')
+            ->leftjoin('district','district_id','district.id')
+            ->leftjoin('ward','ward_id','ward.id')
             ->orderBy('id','asc')
             ->get(); 
         return response()->json($data, 200);    
@@ -379,9 +379,9 @@ class backendController extends Controller
     public static function getBenhNhanId2($id){
         $select=['db_benhnhan.id','ho_ten','gioi_tinh','tuoi','dia_chi','dien_thoai','province._name AS province','district._name as district','ward._name as ward'];
         $data=BenhNhan::select($select)->where('db_benhnhan.id',$id)
-            ->join('province','province_id','province.id')
-            ->join('district','district_id','district.id')
-            ->join('ward','ward_id','ward.id')
+            ->leftjoin('province','province_id','province.id')
+            ->leftjoin('district','district_id','district.id')
+            ->leftjoin('ward','ward_id','ward.id')
             ->orderBy('id','asc')
             ->get()->first(); 
         return $data;  

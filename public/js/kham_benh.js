@@ -6,7 +6,7 @@ $(document).ready(function () {
     API_CALL_BACK();
 });
 var arr_thuoc = [];
-var db_khambenh = { id_benhnhan: 0, chi_phi: 0 };
+var db_khambenh = { id_benhnhan: 0, chi_phi: 0, thu_thuat: ['', ''] };
 var db_bangthuoc = [];
 var db_bangkinh = {};
 var _token = $('#_token').val();
@@ -125,14 +125,12 @@ function saveKhamBenh() {
 
     db_khambenh.dan_do = form.find("[name='dan_do']").val();
     db_khambenh.thu_thuat = $('#select_thuthuat').val();
-    if (db_khambenh.thu_thuat == '') {
-        db_khambenh.thu_thuat = db_khambenh.thu_thuat.join();
-    }
+    db_khambenh.thu_thuat = db_khambenh.thu_thuat.join();
 
 
     //
     $.confirm({
-        title: 'Thông báo',
+        title: 'Xác nhận',
         content: 'Lưu lại thông tin và xuất hóa đơn ?',
         autoClose: 'cancelAction|8000',
         buttons: {

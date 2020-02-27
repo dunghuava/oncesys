@@ -13,9 +13,9 @@ class frontendController extends Controller
     function index (){
         $select=['db_benhnhan.id','ho_ten','tuoi','dia_chi','dien_thoai','province._name AS province','district._name as district','ward._name as ward'];
         $data['BenhNhan']=BenhNhan::select($select)
-            ->join('province','province_id','province.id')
-            ->join('district','district_id','district.id')
-            ->join('ward','ward_id','ward.id')
+            ->leftjoin('province','province_id','province.id')
+            ->leftjoin('district','district_id','district.id')
+            ->leftjoin('ward','ward_id','ward.id')
             ->where('trang_thai','=',0)
             ->orderBy('id','desc')
             ->get();

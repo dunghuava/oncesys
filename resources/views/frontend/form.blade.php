@@ -33,7 +33,7 @@
         <div class="col-md-3">
             <div class="f-row">
                 <label for="">Tuổi</label>
-                <input required placeholder="" name="tuoi" v-model="benh_nhan.tuoi" type="text" class="form-control">
+                <input placeholder="" name="tuoi" v-model="benh_nhan.tuoi" type="text" class="form-control">
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
 </div><br>
 <section class="bg-x">
     <h5><b>[2] Đã tiếp nhận</b></h5>
-    <div class="row" style="height: 121px;overflow: auto">
+    <div class="row" style="height: 165px;overflow: auto">
         <div class="col-md-12">
             @if (!$BenhNhan->isEmpty())
                 @foreach ($BenhNhan as $k=> $item)
@@ -105,8 +105,8 @@
                 @endforeach
             @else
                 <div class="alert text-center" role="alert">
-                    <p style="font-size:40px;color:red" class="fa fa-ban"></p>
-                    <p><strong>Danh sách đang trống</strong></p>
+                    <img style="width: 80px" src="public/images/empty.png" alt="">
+                    <p><strong>Chưa có bệnh nhân nào</strong></p>
                 </div>
             @endif
         </div>

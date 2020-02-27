@@ -128,8 +128,14 @@
                     </p>
                     <p class="text-left">
                         <a href="{{asset('b/printer/?s_id=').$item['id']}}">
+                            <button class="btn btn-warning">
+                                <span class="fa fa-reply-all"></span>
+                                Tái khám
+                            </button>
+                        </a>
+                        <a href="{{asset('b/printer/?s_id=').$item['id']}}">
                             <button class="btn btn-primary">
-                                <span class="fa fa-save"></span>
+                                <span class="fa fa-eye"></span>
                                 Xem phiếu khám
                             </button>
                         </a>
