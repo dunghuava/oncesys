@@ -6,7 +6,7 @@ $(document).ready(function () {
     API_CALL_BACK();
 });
 var arr_thuoc = [];
-var db_khambenh = { id_benhnhan: 0, chi_phi: 0, thu_thuat: ['', ''] };
+var db_khambenh = { id_benhnhan: 0, chi_phi: 0, is_return: 0 };
 var db_bangthuoc = [];
 var db_bangkinh = {};
 var _token = $('#_token').val();
@@ -122,16 +122,18 @@ function saveKhamBenh() {
     db_bangkinh.nhanap_mt = form.find("[name='nhanap_mt']").val();
     db_bangkinh.chandoan_mp = form.find("[name='chandoan_mp']").val();
     db_bangkinh.chandoan_mt = form.find("[name='chandoan_mt']").val();
+    db_khambenh.print_type = 0;
 
     db_khambenh.dan_do = form.find("[name='dan_do']").val();
     db_khambenh.thu_thuat = $('#select_thuthuat').val();
+    db_khambenh.thu_thuat = db_khambenh.thu_thuat == null ? [''] : db_khambenh.thu_thuat;
     db_khambenh.thu_thuat = db_khambenh.thu_thuat.join();
 
 
     //
     $.confirm({
         title: 'Xác nhận',
-        content: 'Lưu lại thông tin và xuất hóa đơn ?',
+        content: 'Lưu thông tin và xuất hóa đơn ?',
         autoClose: 'cancelAction|8000',
         buttons: {
             deleteUser: {
@@ -160,4 +162,73 @@ function saveKhamBenh() {
         }
     });
     //
+}
+
+function saveDonKinh() {
+    var form = $('#form_khambenh');
+    if (db_khambenh.id_benhnhan == 0) {
+        setMessage('Thông báo', 'Chưa chỉ định bệnh nhân được khám');
+        return 0;
+    }
+    db_khambenh.ly_do = form.find("[name='ly_do']").val();
+    db_bangkinh.khongkinh_mp = form.find("[name='khongkinh_mp']").val();
+    db_bangkinh.khongkinh_mt = form.find("[name='khongkinh_mt']").val();
+    db_bangkinh.kinhlo_mp = form.find("[name='kinhlo_mp']").val();
+    db_bangkinh.kinhlo_mt = form.find("[name='kinhlo_mt']").val();
+    db_bangkinh.kinhcu_mp = form.find("[name='kinhcu_mp']").val();
+    db_bangkinh.kinhcu_mt = form.find("[name='kinhcu_mt']").val();
+    db_bangkinh.thiluc_cu_mp = form.find("[name='thiluc_cu_mp']").val();
+    db_bangkinh.thiluc_cu_mt = form.find("[name='thiluc_cu_mt']").val();
+    db_bangkinh.kinhmoi_mp = form.find("[name='kinhmoi_mp']").val();
+    db_bangkinh.kinhmoi_mt = form.find("[name='kinhmoi_mt']").val();
+    db_bangkinh.thiluc_moi_mp = form.find("[name='thiluc_moi_mp']").val();
+    db_bangkinh.thiluc_moi_mt = form.find("[name='thiluc_moi_mt']").val();
+    db_bangkinh.nhanap_mp = form.find("[name='nhanap_mp']").val();
+    db_bangkinh.nhanap_mt = form.find("[name='nhanap_mt']").val();
+    db_bangkinh.chandoan_mp = form.find("[name='chandoan_mp']").val();
+    db_bangkinh.chandoan_mt = form.find("[name='chandoan_mt']").val();
+    //
+    db_bangkinh.kinhlao_mp = form.find("[name='kinhlao_mp']").val();
+    db_bangkinh.dongtulao_mp = form.find("[name='dongtulao_mp']").val();
+    db_bangkinh.kinhlao_mt = form.find("[name='kinhlao_mt']").val();
+    db_bangkinh.dongtulao_mt = form.find("[name='dongtulao_mt']").val();
+    db_bangkinh.kinhnhinxa_mp = form.find("[name='kinhnhinxa_mp']").val();
+    db_bangkinh.dongtuxa_mp = form.find("[name='dongtuxa_mp']").val();
+    db_bangkinh.kinhnhinxa_mt = form.find("[name='kinhnhinxa_mt']").val();
+    db_bangkinh.dongtuxa_mt = form.find("[name='dongtuxa_mt']").val();
+    db_khambenh.print_type = 1;
+
+    //
+    $.confirm({
+        title: 'Xác nhận',
+        content: 'Lưu thông tin và xuất hóa đơn ?',
+        autoClose: 'cancelAction|8000',
+        buttons: {
+            deleteUser: {
+                text: 'Đồng ý',
+                action: function () {
+                    lazyload();
+                    $.ajax({
+                        type: "post",
+                        url: "api/b/save-kham-benh",
+                        data: { 'khambenh': db_khambenh, 'bangkinh': db_bangkinh, '_token': _token },
+                        success: function (response) {
+                            console.log(response);
+                            setMessage('Thông báo', 'Lưu dữ liệu thành công');
+                            setTimeout(() => {
+                                location.href = 'b/printer?s_id=' + response.id;
+                            }, 1500);
+                        },
+                        error: function () {
+                            setMessage('Lỗi', 'Lưu dữ liệu không thành công')
+                        }
+                    });
+                }
+            },
+            cancelAction: function () {
+            }
+        }
+    });
+    //
+
 }

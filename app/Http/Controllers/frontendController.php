@@ -20,6 +20,7 @@ class frontendController extends Controller
             ->orderBy('id','desc')
             ->get();
         $data['Province']=Province::orderby('_name','asc')->get();
+        $data['toltal_of_day']=BenhNhan::select('id')->where('created_at','like','%'.date('Y-m-d').'%')->get();
         return view ('frontend.index',$data);
     }
     function getDistrict($id){

@@ -55686,7 +55686,7 @@ var back_end = new Vue({
         })["catch"](function (e) {
           setMessage('Lỗi', 'Cập nhật dữ liệu không thành công');
         });
-        this.isAdd = false;
+        this.isAddCate = false;
       }
     },
     addCateKinh: function addCateKinh() {

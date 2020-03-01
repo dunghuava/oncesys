@@ -18,7 +18,6 @@
         height: 21cm;
         margin: auto;
         background: white;
-        /* box-shadow: 0 0 0.2cm rgba(0,0,0,0.2); */
         cursor: pointer;
     }
 </style>
@@ -39,14 +38,18 @@
 <div class="p15" id="PAGE-A5">
     <table id="print_table" style="width: 100%">
         <tr>
-            <td colspan="6" style="width: 222px">
+            <td colspan="6">
                 <img id="logo" src="public/images/logo_print.png" alt="">
-                <p>Điện thoại: 0383868205</p>
-                <p>Địa chỉ: F22, Bình Thạnh , HCM</p>
+                <p>ĐT: 0867886068</p>
             </td>
             <td colspan="4" class="center">
                 <h2 class="bold">KẾT QUẢ KHÁM</h2>
                 <p>-----oOo-----</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <p>Đ/c: Số 4, Khu LK6C, Nguyễn Văn Lộc, Hà Đông</p>
             </td>
         </tr>
         <tr>
@@ -66,10 +69,10 @@
                 <table border="1" style="width:100%" class="table-kq">
                     <tr>
                         <td>/</td>
-                        <td>Không kính</td>
+                        <td style="width: 15%">Không kính</td>
                         <td>Kính lỗ</td>
-                        <td>Kính cũ</td>
-                        <td>Kính mới</td>
+                        <td colspan="2">Kính cũ</td>
+                        <td colspan="2">Kính mới</td>
                         <td>Nhãn áp</td>
                     </tr>
                     <tr>
@@ -77,7 +80,9 @@
                         <td>{{$bangkinh['khongkinh_mp']}}</td>
                         <td>{{$bangkinh['kinhlo_mp']}}</td>
                         <td>{{$bangkinh['kinhcu_mp']}}</td>
+                        <td>{{$bangkinh['thiluc_cu_mp']}}</td>
                         <td>{{$bangkinh['kinhmoi_mp']}}</td>
+                        <td>{{$bangkinh['thiluc_moi_mp']}}</td>
                         <td>{{$bangkinh['nhanap_mp']}}</td>
                     </tr>
                     <tr>
@@ -85,7 +90,9 @@
                         <td>{{$bangkinh['khongkinh_mt']}}</td>
                         <td>{{$bangkinh['kinhlo_mt']}}</td>
                         <td>{{$bangkinh['kinhcu_mt']}}</td>
+                        <td>{{$bangkinh['thiluc_cu_mt']}}</td>
                         <td>{{$bangkinh['kinhmoi_mt']}}</td>
+                        <td>{{$bangkinh['thiluc_moi_mp']}}</td>
                         <td>{{$bangkinh['nhanap_mt']}}</td>
                     </tr>
                 </table><br>
@@ -100,6 +107,7 @@
                 <p><b>MT</b>: {{$bangkinh['chandoan_mt']}}</p>
             </td>
         </tr>
+        @if($khambenh['print_type']==0)
         <tr>
             <td colspan="2">
                 <p>Thủ thuật:</p>
@@ -130,9 +138,37 @@
                 </table><br>
             </td>
         </tr>
+        @else
         <tr>
+            <td colspan="10">
+                <table border="1px" style="width: 100%" class="table-kq">
+                    <tr>
+                        <td style="width: 7.5%">/</td>
+                        <td colspan="2" style="width: 40%">Kính lão</td>
+                        <td colspan="2" style="width: 40%" >Kính nhìn xa</td>
+                    </tr>
+                    <tr>
+                        <td><b>MP</b></td>
+                        <td style="width: 20%">{{$bangkinh['kinhlao_mp']}}</td>
+                        <td style="width: 20%">{{$bangkinh['dongtulao_mp']}}</td>
+                        <td style="width: 20%">{{$bangkinh['kinhnhinxa_mp']}}</td>
+                        <td style="width: 20%">{{$bangkinh['dongtuxa_mp']}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>MT</b></td>
+                        <td style="width: 20%">{{$bangkinh['kinhlao_mt']}}</td>
+                        <td style="width: 20%">{{$bangkinh['dongtulao_mt']}}</td>
+                        <td style="width: 20%">{{$bangkinh['kinhnhinxa_mt']}}</td>
+                        <td style="width: 20%">{{$bangkinh['dongtuxa_mt']}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td colspan="10"><br></td></tr>
+        @endif
+        <tr style="margin-top: 5px">
             <td><p>Dặn dò: </p></td>
-            <td colspan="9">
+            <td colspan="10">
                 <p>(*) {{$khambenh['dan_do']}}</p>
                 <p>(*) Khi khám lại nhớ mang theo phiếu này</p>
             </td>

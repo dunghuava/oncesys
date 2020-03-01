@@ -24,7 +24,7 @@
         <tbody>
             @if(!$data->isEmpty())
             @foreach ($data as $i => $item)
-            <tr data-toggle="{{$i!=0 ? 'collapse':''}}" data-target="#tr_{{$i}}">
+            <tr data-toggle="{{$i!=0 ? 'collapse':'collapse'}}" data-target="#tr_{{$i}}">
                     <td class="w50">
                         <div class="ckbox">
                             <input type="checkbox" name="cko">
@@ -38,7 +38,7 @@
                     <td class="w100">{{number_format($item->gia_von)}}</td>
                     <td class="w80"><b>{{number_format($item->so_luong)}}</b></td>
             </tr>
-            <tr id="tr_{{$i}}" class="collapse {{$i==0 ? 'in':''}}">
+            <tr id="tr_{{$i}}" class="collapse {{$i==0 ? '':''}}">
                 <td colspan="2" class="text-center">
                     <p>
                         <img style="width:100px" src="public/images/no-img.png" alt="">

@@ -58,7 +58,7 @@ body{
     background: #EEEEEE;
     font-family: 'Roboto Condensed', sans-serif !important;
 }
-body::-webkit-scrollbar-track
+/* body::-webkit-scrollbar-track
 {
 	border-radius: 10px;
 	background-color: #F5F5F5;
@@ -74,7 +74,7 @@ body::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
 	background-color: #C1C1C1;
-}
+} */
 .bg-x{
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 5px 5px;

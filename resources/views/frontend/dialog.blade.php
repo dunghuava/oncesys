@@ -5,7 +5,7 @@
             <h4><b>Thông báo</b></h4>
         </div>
         <div class="dialog-b">
-            <p>Xóa khỏi danh sách</p>
+            <p>Xóa bệnh nhân khỏi danh sách</p>
         </div>
         <div class="dialog-f">
             <button v-on:click="isdelete=false" class="btn btn-default">Close</button>

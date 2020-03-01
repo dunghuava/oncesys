@@ -75,5 +75,7 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::get('get-thongke','backendController@getThongKe');
         Route::post('calc-thongke','backendController@caclThongKe');
+
+        Route::get('get-return-ds-thuoc/{id}','backendController@getReturnThuoc');
     });
 });

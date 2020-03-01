@@ -5,6 +5,7 @@
 @if (isset($mess))
     <h5 style="margin-top: 0px;"><b>{{$mess}}</b></h5>
 @endif
+<input type="hidden" id="next_index" value="0">
 <div class="box bg-w">
     <table style="width: 100%" class="m-table">
         <thead>
@@ -127,10 +128,10 @@
                         </table>
                     </p>
                     <p class="text-left">
-                        <a href="{{asset('b/printer/?s_id=').$item['id']}}">
+                        <a href="{{asset('b/examination/?return_id=').$item['id']}}">
                             <button class="btn btn-warning">
                                 <span class="fa fa-reply-all"></span>
-                                Tái khám
+                                Trả bệnh nhân
                             </button>
                         </a>
                         <a href="{{asset('b/printer/?s_id=').$item['id']}}">

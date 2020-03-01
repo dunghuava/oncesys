@@ -149,6 +149,7 @@ class backendController extends Controller
             ->leftjoin('province','province_id','province.id')
             ->leftjoin('district','district_id','district.id')
             ->leftjoin('ward','ward_id','ward.id')
+            ->join('db_khambenh','db_benhnhan.id','id_benhnhan')
             ->orderBy('db_benhnhan.updated_at','desc')
             ->paginate(10);
         return view ('backend.hoa-don.index',$data);
@@ -260,7 +261,7 @@ class backendController extends Controller
                         </tr>';
             }
             $data.'     </table>';
-            $data.='<h3>Tổng vốn: '.number_format($tongvon).'<sup>đ</sup> --o-- Tổng lãi: '.number_format($tonglai).'<sup>đ</sup></h3><br>';
+            $data.='<h3>Tổng vốn: '.number_format($tongvon).'<sup>đ</sup> / Tổng lãi: '.number_format($tonglai).'<sup>đ</sup></h3><br>';
 
         }
         return response()->json($data, 200);
@@ -390,26 +391,56 @@ class backendController extends Controller
         $khambenh = $request->khambenh;
         $bangkinh = $request->bangkinh;
         $bangthuoc = $request->bangthuoc;
-        if (!empty($khambenh))
-        {
-            $khambenh['chi_phi']=str_replace('.','',$khambenh['chi_phi']);
-            $id_khambenh = KhamBenh::create($khambenh)->id;
-            if (!empty($bangkinh)){
-                $bangkinh['id_khambenh']=$id_khambenh;
-                BangKinh::create($bangkinh);
-            }
-            if (!empty($bangthuoc)){
-                foreach ($bangthuoc as $item){
-                    $item['id_khambenh']=$id_khambenh;
-                    $temp = Thuoc::find($item['id_thuoc']);
-                    $x = $temp['so_luong']-$item['so_luong'];
-                    Thuoc::where('id',$item['id_thuoc'])->update(['so_luong'=>$x]);
-                    BangThuoc::create($item);
+
+        if ($khambenh['is_return']==0){
+            // echo 'no return';die;
+            // not return
+            if (!empty($khambenh))
+            {
+                $khambenh['chi_phi']=str_replace('.','',$khambenh['chi_phi']);
+                $id_khambenh = KhamBenh::create($khambenh)->id;
+                if (!empty($bangkinh)){
+                    $bangkinh['id_khambenh']=$id_khambenh;
+                    $id_bangkinh = BangKinh::create($bangkinh)->id;
+                }
+                if (!empty($bangthuoc)){
+                    foreach ($bangthuoc as $item){
+                        $item['id_khambenh']=$id_khambenh;
+                        $temp = Thuoc::find($item['id_thuoc']);
+                        $x = $temp['so_luong']-$item['so_luong'];
+                        Thuoc::where('id',$item['id_thuoc'])->update(['so_luong'=>$x]);
+                        $id_bangthuoc = BangThuoc::create($item)->id;
+                    }
                 }
             }
-            BenhNhan::where('id',$khambenh['id_benhnhan'])->update(['trang_thai'=>1]);
-            $data['id']=$khambenh['id_benhnhan'];
-            return response()->json($data, 200);
-       }
+        }else{
+                // is return
+                // echo 'is return';die;
+                $khambenh['chi_phi']=str_replace('.','',$khambenh['chi_phi']);
+                $id_benhnhan=$khambenh['id_benhnhan'];
+                KhamBenh::where('id_benhnhan',$id_benhnhan)->update($khambenh);
+                $id_khambenh=KhamBenh::where('id_benhnhan',$id_benhnhan)->get()->first()['id'];
+                
+                if (!empty($bangkinh)){
+                    BangKinh::where('id_khambenh',$id_khambenh)->update($bangkinh);
+                }
+                if (!empty($bangthuoc)){
+                    BangThuoc::where('id_khambenh',$id_khambenh)->delete();
+                    foreach ($bangthuoc as $item){
+                        $item['id_khambenh']=$id_khambenh;
+                        $temp = Thuoc::find($item['id_thuoc']);
+                        $x = $temp['so_luong']-$item['so_luong'];
+                        Thuoc::where('id',$item['id_thuoc'])->update(['so_luong'=>$x]);
+                        $id_bangthuoc = BangThuoc::create($item)->id;
+                    }
+                }
+        }
+        BenhNhan::where('id',$khambenh['id_benhnhan'])->update(['trang_thai'=>1]);
+        $data['id']=$khambenh['id_benhnhan'];
+        return response()->json($data, 200);
+    }
+    function getReturnThuoc($id){
+        $data['ds_thuoc']=BangThuoc::select(['id_thuoc','ten','loai','gia','gia_von','so_luong','lieu_dung'])->where('id_khambenh',$id)->get();
+        return response()->json($data, 200);
     }
 }
